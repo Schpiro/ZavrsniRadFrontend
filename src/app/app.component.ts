@@ -9,11 +9,18 @@ import {Router} from "@angular/router";
 })
 export class AppComponent {
   title = 'Zavrsni App';
+  url = "ws://localhost:8080/socket/test";
 
   constructor(
     public authenticationService: AuthenticationService,
-    private router: Router
+    private router: Router,
   ) {
+  }
+
+  ngOnInit(){
+    const socket = new WebSocket(this.url);
+    socket.onmessage = (ev: MessageEvent<any>) => {console.log(ev.data)};
+    socket.onopen = (ev: Event) => socket.send(JSON.stringify({"test":"123"}));
   }
 
   logout() {
