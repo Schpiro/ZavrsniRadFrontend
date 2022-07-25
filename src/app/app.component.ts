@@ -20,7 +20,7 @@ export class AppComponent {
   ngOnInit(){
     const socket = new WebSocket(this.url);
     socket.onmessage = (ev: MessageEvent<any>) => {console.log(ev.data)};
-    socket.onopen = (ev: Event) => socket.send(JSON.stringify({"test":"123"}));
+    socket.onopen = (ev: Event) => socket.send(JSON.stringify({"type":"CLIENT_ID","message":"1"}));
   }
 
   logout() {

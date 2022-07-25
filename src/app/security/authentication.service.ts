@@ -47,6 +47,22 @@ export class AuthenticationService {
     return username;
   }
 
+  getAuthenticatedUserID() {
+    const decodedToken = this.decodeJwt();
+    console.log("test")
+    let userId = null;
+    if (decodedToken != null) {
+      const usernameKey = (Object.keys(decodedToken) as (keyof typeof decodedToken)[]).find((key) => {
+        // @ts-ignore
+        return key === 'USER_ID' && decodedToken[key] != null;
+      });
+      if (usernameKey != null) {
+        userId = decodedToken[usernameKey]
+      }
+    }
+    return userId;
+  }
+
   isUserAdmin(): boolean {
     const adminRoleName = 'ROLE_ADMIN';
     const decodedToken = this.decodeJwt();
