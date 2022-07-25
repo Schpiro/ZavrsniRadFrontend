@@ -47,9 +47,8 @@ export class AuthenticationService {
     return username;
   }
 
-  getAuthenticatedUserID() {
+  getAuthenticatedUserID(): any {
     const decodedToken = this.decodeJwt();
-    console.log("test")
     let userId = null;
     if (decodedToken != null) {
       const usernameKey = (Object.keys(decodedToken) as (keyof typeof decodedToken)[]).find((key) => {

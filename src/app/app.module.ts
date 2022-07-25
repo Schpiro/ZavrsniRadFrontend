@@ -11,6 +11,7 @@ import {AuthenticationInterceptor} from "./security/authentication.interceptor";
 import {ForbiddenPageComponent} from "./forbidden-page/forbidden-page.component";
 import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 import { EventComponent } from './event/event.component';
+import { MessageComponent } from './message/message.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { EventComponent } from './event/event.component';
     HomeComponent,
     ForbiddenPageComponent,
     PageNotFoundComponent,
-    EventComponent
+    EventComponent,
+    MessageComponent
   ],
   imports: [
     BrowserModule,

@@ -7,6 +7,7 @@ import {ForbiddenPageComponent} from "./forbidden-page/forbidden-page.component"
 import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 import {AdminAuthorityGuard} from "./security/admin-authority.guard";
 import { EventComponent } from './event/event.component';
+import { MessageComponent } from './message/message.component';
 
 const routes: Routes = [
   {
@@ -30,6 +31,11 @@ const routes: Routes = [
   {
     path: 'event',
     component: EventComponent,
+    canActivate: [LoggedInGuard]
+  },
+  {
+    path: 'messages',
+    component: MessageComponent,
     canActivate: [LoggedInGuard]
   },
   {

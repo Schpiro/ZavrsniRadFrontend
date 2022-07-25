@@ -3,6 +3,7 @@ import {AuthenticationService} from "../security/authentication.service";
 import {Login} from "../security/login.model";
 import {Jwt} from "../security/jwt.model";
 import {Router} from "@angular/router";
+import { WebsocketService } from '../websocket/websocket.service';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +18,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private authenticationService: AuthenticationService,
+    private webSocketService: WebsocketService,
     private router: Router
   ) {
   }
@@ -24,6 +26,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     if(this.authenticationService.isUserAuthenticated()) {
       this.router.navigate(['/home']).then();
+      this.webSocketService.sendMessage("OWN_ID",this.authenticationService.getAuthenticatedUserID());
     }
   }
 
