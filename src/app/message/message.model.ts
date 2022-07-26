@@ -1,8 +1,8 @@
 export interface Message {
-    creator: Number;
+    creator: Number|undefined;
     messageBody: String;
     parentMessage: Number|undefined;
     recipient: Number|undefined;
     recipientGroup: Number|undefined;
+    creationDate: Date|undefined;
   }
-  

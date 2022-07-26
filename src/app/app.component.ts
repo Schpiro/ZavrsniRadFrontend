@@ -8,7 +8,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Zavrsni App';
+  title = 'Zavrsni Rad App';
 
   constructor(
     public authenticationService: AuthenticationService,

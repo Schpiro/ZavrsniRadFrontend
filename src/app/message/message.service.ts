@@ -24,21 +24,21 @@ export class MessageService {
       );
   }
 
-  getMessageBySender(code: String): Observable<Message> {
+  getConversation(code: String): Observable<Message[]> {
     const url = `${this.messagesUrl}/${code}`;
-    return this.http.get<Message>(url)
-    .pipe(
-      tap(_ => console.log('fetched messages by sender')),
-      catchError(this.handleError<Message>('getMessageBySender'))
-    );
+    return this.http.get<Message[]>(url)
+      .pipe(
+        tap(_ => console.log('fetched Messages by conversation')),
+        catchError(this.handleError<Message[]>('getConversation', []))
+      );
   }
 
-  getMessageByGroup(code: String): Observable<Message> {
+  getMessageByGroup(code: String): Observable<Message[]> {
     const url = `${this.messagesUrl}/group/${code}`;
-    return this.http.get<Message>(url)
+    return this.http.get<Message[]>(url)
     .pipe(
       tap(_ => console.log('fetched messages by group')),
-      catchError(this.handleError<Message>('getMessageByGroup'))
+      catchError(this.handleError<Message[]>('getMessageByGroup'))
     );
   }
 
