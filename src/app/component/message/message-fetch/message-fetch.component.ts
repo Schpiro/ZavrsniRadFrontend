@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {Message} from "../../../model/message.model";
-import {User} from "../../../model/user.model";
-import {MessageGroup} from "../../../model/message-groups.model";
 import {MessageService} from "../../../service/message.service";
+import {MessageGroup} from "../../../model/message-groups.model";
+import {User} from "../../../model/user.model";
 import {UserService} from "../../../service/user.service";
 
 @Component({
@@ -10,36 +10,32 @@ import {UserService} from "../../../service/user.service";
   templateUrl: './message-fetch.component.html',
   styleUrls: ['./message-fetch.component.css']
 })
-export class MessageFetchComponent implements OnInit {
-
+export class MessageFetchComponent implements OnInit, OnChanges {
+  @Input() selectedRecipient?: any;
   message?: Message[];
-  users?: User[];
-  messageGroups?: MessageGroup[];
 
   constructor(
     private messageService: MessageService,
-    private userService: UserService
-  ) { }
+  ) {}
 
-  ngOnInit(): void {
-    this.userService.getUsers()
-      .subscribe(users => this.users = users);
-    this.userService.getUsersMessageGroups()
-      .subscribe(messageGroups => this.messageGroups = messageGroups);
+  ngOnInit(): void {}
+
+  ngOnChanges(changes: SimpleChanges) {
+    //Trebao bi biti instanceof umjesto ovog scuffed
+    if(this.selectedRecipient.hasOwnProperty("groupName")){
+      this.getGroupConversation();
+    }else{
+      this.getConversation();
+    }
   }
 
-  getMessages(): void{
-    this.messageService.getMessages()
+  getConversation(): void {
+    this.messageService.getConversation(this.selectedRecipient?.id)
       .subscribe(message => this.message = message)
   }
 
-  getConversation(userId: string): void{
-    this.messageService.getConversation(userId)
-      .subscribe(message => this.message = message)
-  }
-
-  getGroupConversation(groupId: number) {
-    this.messageService.getMessageByGroup(groupId)
+  getGroupConversation(): void {
+    this.messageService.getMessageByGroup(this.selectedRecipient?.id)
       .subscribe(message => this.message = message)
   }
 }

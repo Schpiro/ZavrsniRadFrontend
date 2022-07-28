@@ -25,7 +25,7 @@ export class MessageService {
       );
   }
 
-  getConversation(code: String): Observable<Message[]> {
+  getConversation(code: number | undefined): Observable<Message[]> {
     const url = `${this.messagesUrl}/${code}`;
     return this.http.get<Message[]>(url)
       .pipe(
@@ -34,7 +34,7 @@ export class MessageService {
       );
   }
 
-  getMessageByGroup(code: Number): Observable<Message[]> {
+  getMessageByGroup(code: number | undefined): Observable<Message[]> {
     const url = `${this.messagesUrl}/group/${code}`;
     return this.http.get<Message[]>(url)
     .pipe(
@@ -54,7 +54,7 @@ export class MessageService {
 
   sendMessage(message: Message): Observable<Message>{
     return this.http.post<Message>(this.messagesUrl, message, this.httpOptions).pipe(
-      tap((newMessage: Message) => console.log(`Successfully sent message to ${newMessage.recipient!==null?newMessage.recipient:newMessage.recipientGroup}!`)),
+      tap((newMessage: Message) => console.log(`Successfully sent message: ${newMessage.messageBody}!`)),
       catchError(this.handleError<Message>('sendMessage'))
       );
   }

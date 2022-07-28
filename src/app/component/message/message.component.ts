@@ -11,6 +11,7 @@ import {MessageGroup} from "../../model/message-groups.model";
   styleUrls: ['./message.component.css']
 })
 export class MessageComponent implements OnInit {
+  selectedRecipient?: User | MessageGroup;
   message?: Message[];
   users?: User[];
   messageGroups?: MessageGroup[];
@@ -25,5 +26,9 @@ export class MessageComponent implements OnInit {
       .subscribe(users => this.users = users);
     this.userService.getUsersMessageGroups()
       .subscribe(messageGroups => this.messageGroups = messageGroups);
+  }
+
+  setRecipient(recipient: MessageGroup | User) {
+    this.selectedRecipient = recipient;
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Message} from "../../../model/message.model";
 import {MessageService} from "../../../service/message.service";
 
@@ -8,6 +8,7 @@ import {MessageService} from "../../../service/message.service";
   styleUrls: ['./message-send.component.css']
 })
 export class MessageSendComponent implements OnInit {
+  @Input() selectedRecipient?: any;
 
   constructor(
     private messageService: MessageService,
@@ -16,11 +17,14 @@ export class MessageSendComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  sendMessage(userId: string, groupId: string, messageBody: string): void{
-    const userIdNo = Number.parseInt(userId);
-    const groupIdNo = Number.parseInt(groupId);
+  sendMessage(messageBody: string): void{
+    let group = this.selectedRecipient.hasOwnProperty("groupName");
+    let recipientId = this.selectedRecipient.id;
+
     let message: Message = {
-      recipient: userIdNo, recipientGroup: groupIdNo, messageBody: messageBody,
+      recipient: group?undefined:recipientId,
+      recipientGroup: group?recipientId:undefined,
+      messageBody: messageBody,
       creator: undefined,
       parentMessage: undefined,
       creationDate: undefined
