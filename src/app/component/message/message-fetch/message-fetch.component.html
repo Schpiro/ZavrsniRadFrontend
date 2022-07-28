@@ -1,0 +1,15 @@
+<ul class="users">
+  <li *ngFor="let user of users">
+    <button (click)="getConversation(user.id.toString())">{{user.username}}</button>
+  </li>
+</ul>
+<ul class="messageGroups">
+  <li *ngFor="let group of messageGroups">
+    <button (click)="getGroupConversation(group.id)">{{group.groupName}}</button>
+  </li>
+</ul>
+<ul class="message">
+  <li *ngFor="let message of message">
+    <div>{{message.creator}} - {{message.messageBody}} - {{message.creationDate}}</div>
+  </li>
+</ul>

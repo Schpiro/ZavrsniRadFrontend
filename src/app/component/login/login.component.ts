@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthenticationService} from "../security/authentication.service";
-import {Login} from "../security/login.model";
-import {Jwt} from "../security/jwt.model";
+import {AuthenticationService} from "../../service/authentication.service";
+import {Login} from "../../model/login.model";
+import {Jwt} from "../../model/jwt.model";
 import {Router} from "@angular/router";
-import { WebsocketService } from '../websocket/websocket.service';
+import { WebsocketService } from '../../service/websocket.service';
 
 @Component({
   selector: 'app-login',

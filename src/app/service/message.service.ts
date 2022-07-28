@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {catchError, Observable, of, tap} from "rxjs";
-import { Message } from './message.model';
+import { Message } from '../model/message.model';
+import {MessageGroup} from "../model/message-groups.model";
 
 @Injectable({
   providedIn: 'root'
@@ -33,7 +34,7 @@ export class MessageService {
       );
   }
 
-  getMessageByGroup(code: String): Observable<Message[]> {
+  getMessageByGroup(code: Number): Observable<Message[]> {
     const url = `${this.messagesUrl}/group/${code}`;
     return this.http.get<Message[]>(url)
     .pipe(
@@ -42,9 +43,18 @@ export class MessageService {
     );
   }
 
+  createMessageGroup(messageGroup: MessageGroup): Observable<MessageGroup> {
+    const url = "http://localhost:8080/users/groups";
+    console.log(messageGroup);
+    return this.http.post<MessageGroup>(url, messageGroup, this.httpOptions).pipe(
+      tap((newMessageGroup: MessageGroup) => console.log(`Successfully created a new group ${newMessageGroup.groupName}!`)),
+      catchError(this.handleError<MessageGroup>('createMessageGroup'))
+    );
+  }
+
   sendMessage(message: Message): Observable<Message>{
     return this.http.post<Message>(this.messagesUrl, message, this.httpOptions).pipe(
-      tap((newMessage: Message) => console.log(`Sucesfully sent message to ${newMessage.recipient!==null?newMessage.recipient:newMessage.recipientGroup}!`)),
+      tap((newMessage: Message) => console.log(`Successfully sent message to ${newMessage.recipient!==null?newMessage.recipient:newMessage.recipientGroup}!`)),
       catchError(this.handleError<Message>('sendMessage'))
       );
   }

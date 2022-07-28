@@ -4,14 +4,17 @@ import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
-import {LoginComponent} from './login/login.component';
+import {LoginComponent} from './component/login/login.component';
 import {FormsModule} from "@angular/forms";
-import {HomeComponent} from './home/home.component';
+import {HomeComponent} from './component/home/home.component';
 import {AuthenticationInterceptor} from "./security/authentication.interceptor";
-import {ForbiddenPageComponent} from "./forbidden-page/forbidden-page.component";
-import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
-import { EventComponent } from './event/event.component';
-import { MessageComponent } from './message/message.component';
+import {ForbiddenPageComponent} from "./component/forbidden-page/forbidden-page.component";
+import {PageNotFoundComponent} from "./component/page-not-found/page-not-found.component";
+import { EventComponent } from './component/event/event.component';
+import { MessageComponent } from './component/message/message.component';
+import { MessageFetchComponent } from './component/message/message-fetch/message-fetch.component';
+import {MessageSendComponent} from "./component/message/message-send/message-send.component";
+import { MessageGroupCreateComponent } from './component/message/message-group-create/message-group-create.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,10 @@ import { MessageComponent } from './message/message.component';
     ForbiddenPageComponent,
     PageNotFoundComponent,
     EventComponent,
-    MessageComponent
+    MessageComponent,
+    MessageSendComponent,
+    MessageFetchComponent,
+    MessageGroupCreateComponent
   ],
   imports: [
     BrowserModule,

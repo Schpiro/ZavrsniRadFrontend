@@ -1,13 +1,13 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {LoginComponent} from "./login/login.component";
+import {LoginComponent} from "./component/login/login.component";
 import {LoggedInGuard} from "./security/logged-in.guard";
-import {HomeComponent} from "./home/home.component";
-import {ForbiddenPageComponent} from "./forbidden-page/forbidden-page.component";
-import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
+import {HomeComponent} from "./component/home/home.component";
+import {ForbiddenPageComponent} from "./component/forbidden-page/forbidden-page.component";
+import {PageNotFoundComponent} from "./component/page-not-found/page-not-found.component";
 import {AdminAuthorityGuard} from "./security/admin-authority.guard";
-import { EventComponent } from './event/event.component';
-import { MessageComponent } from './message/message.component';
+import { EventComponent } from './component/event/event.component';
+import { MessageComponent } from './component/message/message.component';
 
 const routes: Routes = [
   {

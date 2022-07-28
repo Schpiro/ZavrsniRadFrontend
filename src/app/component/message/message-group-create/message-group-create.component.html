@@ -1,0 +1,13 @@
+<div>
+  <h3>Create group</h3>
+  <div>
+    <label>Name:
+      <div>
+        <input #Name />
+      </div>
+    </label>
+  </div>
+  <button (click)="createMessageGroup(Name.value,['1','2']);Name.value='';">
+    Create group
+  </button>
+</div>

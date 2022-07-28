@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {catchError, Observable, of, tap} from "rxjs";
-import {User} from "./user.model";
-import {MessageGroup} from "../message/message-groups.model";
+import {User} from "../model/user.model";
+import {MessageGroup} from "../model/message-groups.model";
 
 @Injectable({
   providedIn: 'root'
