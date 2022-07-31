@@ -10,6 +10,7 @@ import {Jwt} from "../model/jwt.model";
 export class AuthenticationService {
 
   rootUrl = 'http://localhost:8080/authentication';
+  static getAuthenticatedUserID: any;
 
   constructor(private http: HttpClient) {
   }
@@ -47,9 +48,9 @@ export class AuthenticationService {
     return username;
   }
 
-  getAuthenticatedUserID(): any {
+  getAuthenticatedUserID(): number {
     const decodedToken = this.decodeJwt();
-    let userId = null;
+    let userId;
     if (decodedToken != null) {
       const usernameKey = (Object.keys(decodedToken) as (keyof typeof decodedToken)[]).find((key) => {
         // @ts-ignore
@@ -59,6 +60,7 @@ export class AuthenticationService {
         userId = decodedToken[usernameKey]
       }
     }
+    // @ts-ignore
     return userId;
   }
 

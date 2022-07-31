@@ -1,6 +1,8 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Message} from "../../../model/message.model";
 import {MessageService} from "../../../service/message.service";
+import {WebSocketMessage} from "../../../model/web-socket-message.model";
+import {AuthenticationService} from "../../../service/authentication.service";
 
 @Component({
   selector: 'app-message-send',
@@ -9,9 +11,11 @@ import {MessageService} from "../../../service/message.service";
 })
 export class MessageSendComponent implements OnInit {
   @Input() selectedRecipient?: any;
+  @Output() webSocketMessage= new EventEmitter<WebSocketMessage>();
 
   constructor(
     private messageService: MessageService,
+    private authenticationService: AuthenticationService
   ) { }
 
   ngOnInit(): void {
@@ -22,15 +26,18 @@ export class MessageSendComponent implements OnInit {
     let recipientId = this.selectedRecipient.id;
 
     let message: Message = {
-      recipient: group?undefined:recipientId,
-      recipientGroup: group?recipientId:undefined,
-      messageBody: messageBody,
-      creator: undefined,
+      recipientId: group?undefined:recipientId,
+      recipientGroupId: group?recipientId:undefined,
+      messageBody: JSON.stringify(messageBody),
+      creator: this.authenticationService.getAuthenticatedUserID(),
       parentMessage: undefined,
-      creationDate: undefined
+      creationDate: Date.now().toString()
     }
+    console.log(message)
     this.messageService.sendMessage(message).subscribe(res => {
       console.log(res)
     })
+    this.webSocketMessage.emit({type:(group?"GROUP_MESSAGE":"PRIVATE_MESSAGE"),payload:message})
   }
+
 }

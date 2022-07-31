@@ -1,4 +1,6 @@
-import { Injectable } from '@angular/core';
+import {EventEmitter, Injectable} from '@angular/core';
+import {AuthenticationService} from "./authentication.service";
+import {WebSocketMessage} from "../model/web-socket-message.model";
 
 const url = "ws://localhost:8080/socket/test";
 
@@ -6,15 +8,24 @@ const url = "ws://localhost:8080/socket/test";
   providedIn: 'root'
 })
 export class WebsocketService {
+  public webSocketMessage = new EventEmitter<WebSocketMessage>();
   public messages: MessageEvent[] = [];
   private socket: WebSocket;
 
-  constructor() {
+  constructor(
+    public authenticationService: AuthenticationService,
+  ) {
     this.socket = new WebSocket(url);
-    this.socket.onmessage = (ev: MessageEvent<any>) => {this.messages.push(ev)};
+    this.socket.onopen = () => this.sendMessage({type:"CLIENT_ID", payload:this.authenticationService.getAuthenticatedUserID()});
+    this.socket.onmessage = (ev: MessageEvent) => {
+      this.webSocketMessage.emit(JSON.parse(ev.data));
+    };
   }
 
-  public sendMessage(type: String, message: String){
-    this.socket.send(JSON.stringify({"type":type,"message":message}));
+  ngOnInit() {
+  }
+
+  public sendMessage(webSocketMessage: WebSocketMessage) {
+    this.socket.send(JSON.stringify(webSocketMessage));
   }
 }

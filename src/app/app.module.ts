@@ -14,7 +14,11 @@ import { EventComponent } from './component/event/event.component';
 import { MessageComponent } from './component/message/message.component';
 import { MessageFetchComponent } from './component/message/message-fetch/message-fetch.component';
 import {MessageSendComponent} from "./component/message/message-send/message-send.component";
-import { MessageGroupCreateComponent } from './component/message/message-group-create/message-group-create.component';
+import { UserGroupCreateComponent } from './component/user/user-group-create/user-group-create.component';
+import { UserMultipleSelectComponent } from './component/user/user-multiple-select/user-multiple-select.component';
+import { UserGroupSingleSelectComponent } from './component/user/user-group-single-select/user-group-single-select.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 @NgModule({
   declarations: [
@@ -27,13 +31,18 @@ import { MessageGroupCreateComponent } from './component/message/message-group-c
     MessageComponent,
     MessageSendComponent,
     MessageFetchComponent,
-    MessageGroupCreateComponent
+    UserGroupCreateComponent,
+    UserGroupSingleSelectComponent,
+    UserMultipleSelectComponent,
+    UserGroupSingleSelectComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MatCheckboxModule
   ],
   providers: [
     {

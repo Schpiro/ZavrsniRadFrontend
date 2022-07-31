@@ -26,7 +26,6 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     if(this.authenticationService.isUserAuthenticated()) {
       this.router.navigate(['/home']).then();
-      this.webSocketService.sendMessage("OWN_ID",this.authenticationService.getAuthenticatedUserID());
     }
   }
 

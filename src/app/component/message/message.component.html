@@ -1,14 +1,5 @@
 <h2>Messages</h2>
-<ul class="users">
-  <li *ngFor="let user of users">
-    <button (click)="setRecipient(user)">{{user.username}}</button>
-  </li>
-</ul>
-<ul class="messageGroups">
-  <li *ngFor="let group of messageGroups">
-    <button (click)="setRecipient(group)">{{group.groupName}}</button>
-  </li>
-</ul>
+<app-user-group-single-select (newItemEvent)="selectedRecipient=$event"></app-user-group-single-select>
 <app-message-fetch [selectedRecipient]="selectedRecipient"></app-message-fetch>
-<app-message-group-create></app-message-group-create>
-<app-message-send [selectedRecipient]="selectedRecipient"></app-message-send>
+<app-user-group-create></app-user-group-create>
+<app-message-send [selectedRecipient]="selectedRecipient" (webSocketMessage)="sendMessage($event)"></app-message-send>

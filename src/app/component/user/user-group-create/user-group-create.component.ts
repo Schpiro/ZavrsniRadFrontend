@@ -1,13 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {MessageService} from "../../../service/message.service";
 import {MessageGroup} from "../../../model/message-groups.model";
+import {User} from "../../../model/user.model";
 
 @Component({
-  selector: 'app-message-group-create',
-  templateUrl: './message-group-create.component.html',
-  styleUrls: ['./message-group-create.component.css']
+  selector: 'app-user-group-create',
+  templateUrl: './user-group-create.component.html',
+  styleUrls: ['./user-group-create.component.css']
 })
-export class MessageGroupCreateComponent implements OnInit {
+export class UserGroupCreateComponent implements OnInit {
+  @Input() users: User[] = [];
 
   constructor(
     private messageService: MessageService,
@@ -16,10 +18,10 @@ export class MessageGroupCreateComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  createMessageGroup(groupName: string, userIds: string[]): void{
+  createMessageGroup(groupName: string, users: User[]): void{
     const userIdsNo: number[] = [];
-    for (let i = 0; i < userIds.length; i++) {
-      userIdsNo.push(parseInt(userIds[i]));
+    for (let i = 0; i < users.length; i++) {
+      userIdsNo.push(users[i].id);
     }
     let messageGroup: MessageGroup = {
         id: 0,

@@ -1,0 +1,16 @@
+<div>
+  <h3>Create group</h3>
+  <div>
+    <label>Name:
+      <div>
+        <input #Name />
+      </div>
+    </label>
+  </div>
+  <div>
+    <app-user-multiple-select (newItemEvent)="this.users=$event"></app-user-multiple-select>
+  </div>
+  <button (click)="createMessageGroup(Name.value,users);Name.value='';">
+    Create group
+  </button>
+</div>

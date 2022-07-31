@@ -1,0 +1,5 @@
+<ul class="users">
+  <li *ngFor="let userSelect of users">
+    <mat-checkbox (click)="setRecipient()" [(ngModel)]="userSelect.isSelected">{{userSelect.user.username}}</mat-checkbox>
+  </li>
+</ul>

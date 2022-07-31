@@ -1,0 +1,10 @@
+<ul class="users">
+  <li *ngFor="let user of users">
+    <button (click)="setRecipient(user)">{{user.username}}</button>
+  </li>
+</ul>
+<ul class="messageGroups">
+  <li *ngFor="let group of messageGroups">
+    <button (click)="setRecipient(group)">{{group.groupName}}</button>
+  </li>
+</ul>

@@ -1,9 +1,8 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {Message} from "../../../model/message.model";
 import {MessageService} from "../../../service/message.service";
-import {MessageGroup} from "../../../model/message-groups.model";
-import {User} from "../../../model/user.model";
-import {UserService} from "../../../service/user.service";
+import {WebsocketService} from "../../../service/websocket.service";
+import {WebSocketMessage} from "../../../model/web-socket-message.model";
 
 @Component({
   selector: 'app-message-fetch',
@@ -16,9 +15,12 @@ export class MessageFetchComponent implements OnInit, OnChanges {
 
   constructor(
     private messageService: MessageService,
+    private webSocketService: WebsocketService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.webSocketService.webSocketMessage.subscribe(x => this.appendMessage(x) )
+  }
 
   ngOnChanges(changes: SimpleChanges) {
     //Trebao bi biti instanceof umjesto ovog scuffed
@@ -37,5 +39,9 @@ export class MessageFetchComponent implements OnInit, OnChanges {
   getGroupConversation(): void {
     this.messageService.getMessageByGroup(this.selectedRecipient?.id)
       .subscribe(message => this.message = message)
+  }
+
+  appendMessage(webSocketMessage: WebSocketMessage): void{
+    this.message?.push(<Message>webSocketMessage.payload);
   }
 }

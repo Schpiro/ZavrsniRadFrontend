@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { Message } from '../../model/message.model';
+import {Component, OnInit} from '@angular/core';
 import { MessageService } from '../../service/message.service';
 import {UserService} from "../../service/user.service";
 import {User} from "../../model/user.model";
 import {MessageGroup} from "../../model/message-groups.model";
+import {WebSocketMessage} from "../../model/web-socket-message.model";
+import {WebsocketService} from "../../service/websocket.service";
 
 @Component({
   selector: 'app-message',
@@ -12,13 +13,13 @@ import {MessageGroup} from "../../model/message-groups.model";
 })
 export class MessageComponent implements OnInit {
   selectedRecipient?: User | MessageGroup;
-  message?: Message[];
   users?: User[];
   messageGroups?: MessageGroup[];
 
   constructor(
     private messageService: MessageService,
-    private userService: UserService
+    private userService: UserService,
+    private webSocketService: WebsocketService
   ) { }
 
   ngOnInit(): void {
@@ -28,7 +29,7 @@ export class MessageComponent implements OnInit {
       .subscribe(messageGroups => this.messageGroups = messageGroups);
   }
 
-  setRecipient(recipient: MessageGroup | User) {
-    this.selectedRecipient = recipient;
+  sendMessage(event: WebSocketMessage) {
+    this.webSocketService.sendMessage(event);
   }
 }
