@@ -4,5 +4,6 @@ export interface Message {
     parentMessage: number|undefined;
     recipientId: number|undefined;
     recipientGroupId: number|undefined;
+    groupParticipantsIds: number[]|undefined;
     creationDate: string|undefined;
   }

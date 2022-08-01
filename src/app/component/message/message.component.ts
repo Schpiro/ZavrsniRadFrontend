@@ -30,6 +30,7 @@ export class MessageComponent implements OnInit {
   }
 
   sendMessage(event: WebSocketMessage) {
+    console.log(event);
     this.webSocketService.sendMessage(event);
   }
 }

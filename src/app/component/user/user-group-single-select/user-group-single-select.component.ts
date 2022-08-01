@@ -4,6 +4,7 @@ import {MessageGroup} from "../../../model/message-groups.model";
 import {Message} from "../../../model/message.model";
 import {MessageService} from "../../../service/message.service";
 import {UserService} from "../../../service/user.service";
+import {WebsocketService} from "../../../service/websocket.service";
 
 @Component({
   selector: 'app-user-group-single-select',
@@ -18,7 +19,8 @@ export class UserGroupSingleSelectComponent implements OnInit {
 
   constructor(
     private messageService: MessageService,
-    private userService: UserService
+    private userService: UserService,
+    private webSocketService: WebsocketService
   ) { }
 
   ngOnInit(): void {
@@ -26,6 +28,7 @@ export class UserGroupSingleSelectComponent implements OnInit {
       .subscribe(users => this.users = users);
     this.userService.getUsersMessageGroups()
       .subscribe(messageGroups => this.messageGroups = messageGroups);
+    this.webSocketService.webSocketMessage.subscribe(x=> {if(x.type === "NEW_GROUP")this.messageGroups?.push(<MessageGroup>x.payload)})
   }
 
   setRecipient(recipient: MessageGroup | User) {

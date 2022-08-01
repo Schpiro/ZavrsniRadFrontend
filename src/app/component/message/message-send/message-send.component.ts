@@ -11,7 +11,7 @@ import {AuthenticationService} from "../../../service/authentication.service";
 })
 export class MessageSendComponent implements OnInit {
   @Input() selectedRecipient?: any;
-  @Output() webSocketMessage= new EventEmitter<WebSocketMessage>();
+  @Output() webSocketMessage = new EventEmitter<WebSocketMessage>();
 
   constructor(
     private messageService: MessageService,
@@ -30,14 +30,16 @@ export class MessageSendComponent implements OnInit {
       recipientGroupId: group?recipientId:undefined,
       messageBody: JSON.stringify(messageBody),
       creator: this.authenticationService.getAuthenticatedUserID(),
+      groupParticipantsIds: undefined,
       parentMessage: undefined,
       creationDate: Date.now().toString()
     }
     console.log(message)
     this.messageService.sendMessage(message).subscribe(res => {
       console.log(res)
+      message.groupParticipantsIds = res.groupParticipantsIds;
+      this.webSocketMessage.emit({type:(group?"GROUP_MESSAGE":"PRIVATE_MESSAGE"),payload:message})
     })
-    this.webSocketMessage.emit({type:(group?"GROUP_MESSAGE":"PRIVATE_MESSAGE"),payload:message})
   }
 
 }
