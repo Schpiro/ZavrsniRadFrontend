@@ -2,7 +2,7 @@ import {EventEmitter, Injectable} from '@angular/core';
 import {AuthenticationService} from "./authentication.service";
 import {WebSocketMessage} from "../model/web-socket-message.model";
 
-const url = "ws://localhost:8080/socket/test";
+const url = "wss://localhost:8080/socket/test";
 
 @Injectable({
   providedIn: 'root'

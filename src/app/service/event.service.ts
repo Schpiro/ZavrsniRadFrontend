@@ -8,7 +8,7 @@ import { Event } from '../model/event.model';
 })
 export class Eventservice {
 
-  private eventsUrl = 'http://localhost:8080/event';
+  private eventsUrl = 'https://localhost:8080/event';
 
   httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})

@@ -67,6 +67,11 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options":{
+            "ssl": true,
+            "sslCert": "src/assets/ssl/bbzavrsni.cer",
+            "sslKey": "src/assets/ssl/bbzavrsni.key"
+          },
           "configurations": {
             "production": {
               "browserTarget": "zavrsni-frontend:build:production"

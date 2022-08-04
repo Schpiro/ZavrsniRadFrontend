@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {catchError, Observable, of, tap} from "rxjs";
 import { Message } from '../model/message.model';
 import {MessageGroup} from "../model/message-groups.model";
@@ -9,7 +9,7 @@ import {MessageGroup} from "../model/message-groups.model";
 })
 export class MessageService {
 
-  private messagesUrl = 'http://localhost:8080/message';
+  private messagesUrl = 'https://localhost:8080/message';
 
   httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -44,7 +44,7 @@ export class MessageService {
   }
 
   createMessageGroup(messageGroup: MessageGroup): Observable<MessageGroup> {
-    const url = "http://localhost:8080/users/groups";
+    const url = "https://localhost:8080/users/groups";
     console.log(messageGroup);
     return this.http.post<MessageGroup>(url, messageGroup, this.httpOptions).pipe(
       tap((newMessageGroup: MessageGroup) => console.log(`Successfully created a new group ${newMessageGroup.groupName}!`)),

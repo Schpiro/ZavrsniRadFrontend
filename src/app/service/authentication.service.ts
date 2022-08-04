@@ -9,7 +9,7 @@ import {Jwt} from "../model/jwt.model";
 })
 export class AuthenticationService {
 
-  rootUrl = 'http://localhost:8080/authentication';
+  rootUrl = 'https://localhost:8080/authentication';
   static getAuthenticatedUserID: any;
 
   constructor(private http: HttpClient) {
