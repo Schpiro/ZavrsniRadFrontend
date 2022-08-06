@@ -24,10 +24,12 @@ export class MessageFetchComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     //Trebao bi biti instanceof umjesto ovog scuffed
-    if(this.selectedRecipient.hasOwnProperty("groupName")){
-      this.getGroupConversation();
-    }else{
-      this.getConversation();
+    if(this.selectedRecipient) {
+      if (this.selectedRecipient.hasOwnProperty("groupName")) {
+        this.getGroupConversation();
+      } else {
+        this.getConversation();
+      }
     }
   }
 
@@ -43,10 +45,6 @@ export class MessageFetchComponent implements OnInit, OnChanges {
 
   appendMessage(webSocketMessage: WebSocketMessage): void{
     let message = <Message>webSocketMessage.payload;
-    console.log(message)
-    console.log(this.selectedRecipient)
-    console.log(message.recipientGroupId)
-    console.log(message.recipientGroupId === this.selectedRecipient.id)
 
     if((this.selectedRecipient.hasOwnProperty("groupName") && message.recipientGroupId === this.selectedRecipient.id)
         || message.recipientId === this.selectedRecipient.id)

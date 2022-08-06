@@ -38,7 +38,7 @@ export class MessageSendComponent implements OnInit {
     this.messageService.sendMessage(message).subscribe(res => {
       console.log(res)
       message.groupParticipantsIds = res.groupParticipantsIds;
-      this.webSocketMessage.emit({type:(group?"GROUP_MESSAGE":"PRIVATE_MESSAGE"),payload:message})
+      this.webSocketMessage.emit({type:(group?"GROUP_MESSAGE":"PRIVATE_MESSAGE"),payload:message,recipientIds:undefined,senderId: undefined})
     })
   }
 

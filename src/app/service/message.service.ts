@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {catchError, Observable, of, tap} from "rxjs";
 import { Message } from '../model/message.model';
-import {MessageGroup} from "../model/message-groups.model";
 
 @Injectable({
   providedIn: 'root'
@@ -43,14 +42,6 @@ export class MessageService {
     );
   }
 
-  createMessageGroup(messageGroup: MessageGroup): Observable<MessageGroup> {
-    const url = "https://localhost:8080/users/groups";
-    console.log(messageGroup);
-    return this.http.post<MessageGroup>(url, messageGroup, this.httpOptions).pipe(
-      tap((newMessageGroup: MessageGroup) => console.log(`Successfully created a new group ${newMessageGroup.groupName}!`)),
-      catchError(this.handleError<MessageGroup>('createMessageGroup'))
-    );
-  }
 
   sendMessage(message: Message): Observable<Message>{
     return this.http.post<Message>(this.messagesUrl, message, this.httpOptions).pipe(

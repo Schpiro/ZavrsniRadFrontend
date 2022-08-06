@@ -16,7 +16,7 @@ export class WebsocketService {
     public authenticationService: AuthenticationService,
   ) {
     this.socket = new WebSocket(url);
-    this.socket.onopen = () => this.sendMessage({type:"CLIENT_ID", payload:this.authenticationService.getAuthenticatedUserID()});
+    this.socket.onopen = () => this.sendMessage({type:"CLIENT_ID", payload:this.authenticationService.getAuthenticatedUserID(),recipientIds:undefined,senderId: undefined});
     this.socket.onmessage = (ev: MessageEvent) => {
       this.webSocketMessage.emit(JSON.parse(ev.data));
     };

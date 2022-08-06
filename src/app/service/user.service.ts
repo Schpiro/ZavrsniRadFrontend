@@ -33,6 +33,25 @@ export class UserService {
       );
   }
 
+  createMessageGroup(messageGroup: MessageGroup): Observable<MessageGroup> {
+    const url = `${this.userUrl}/groups`;
+    console.log(messageGroup);
+    return this.http.post<MessageGroup>(url, messageGroup, this.httpOptions).pipe(
+      tap((newMessageGroup: MessageGroup) => console.log(`Successfully created a new group ${newMessageGroup.groupName}!`)),
+      catchError(this.handleError<MessageGroup>('createMessageGroup'))
+    );
+  }
+
+  getUsersInGroup(groupId: number): Observable<User[]>{
+    const url = `${this.userUrl}/groups/${groupId}`;
+    return this.http.get<User[]>(url)
+      .pipe(
+        tap(_ => console.log('getUsersInGroup')),
+        catchError(this.handleError<User[]>('getUsersInGroup', []))
+      );
+  }
+
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(operation);

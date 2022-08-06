@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {AuthenticationService} from "./service/authentication.service";
 import {Router} from "@angular/router";
+import {environment} from "../environments/environment";
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,14 @@ export class AppComponent {
     public authenticationService: AuthenticationService,
     private router: Router,
   ) {
+  }
+
+  ngOnInit(){
+    if (environment.production) {
+      if (location.protocol === 'http:') {
+        window.location.href = location.href.replace('http', 'https');
+      }
+    }
   }
 
   logout() {

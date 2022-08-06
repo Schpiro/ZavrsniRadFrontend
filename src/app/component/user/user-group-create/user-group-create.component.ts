@@ -1,8 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {MessageService} from "../../../service/message.service";
 import {MessageGroup} from "../../../model/message-groups.model";
 import {User} from "../../../model/user.model";
 import {WebSocketMessage} from "../../../model/web-socket-message.model";
+import {UserService} from "../../../service/user.service";
 
 @Component({
   selector: 'app-user-group-create',
@@ -14,7 +14,7 @@ export class UserGroupCreateComponent implements OnInit {
   @Output() webSocketMessage = new EventEmitter<WebSocketMessage>();
 
   constructor(
-    private messageService: MessageService
+    private userService: UserService
   ) { }
 
   ngOnInit(): void {
@@ -30,10 +30,10 @@ export class UserGroupCreateComponent implements OnInit {
         groupName: groupName,
         groupParticipants: userIdsNo
     }
-    this.messageService.createMessageGroup(messageGroup).subscribe(res => {
+    this.userService.createMessageGroup(messageGroup).subscribe(res => {
       console.log(res);
       messageGroup.id = res.id;
-      this.webSocketMessage.emit({type:"NEW_GROUP",payload:messageGroup});
+      this.webSocketMessage.emit({type:"NEW_GROUP",payload:messageGroup,recipientIds:undefined,senderId: undefined});
     })
   }
 }

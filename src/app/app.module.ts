@@ -19,6 +19,7 @@ import { UserMultipleSelectComponent } from './component/user/user-multiple-sele
 import { UserGroupSingleSelectComponent } from './component/user/user-group-single-select/user-group-single-select.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import { AudioVideoCallComponent } from './component/audio-video-call/audio-video-call.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     UserGroupCreateComponent,
     UserGroupSingleSelectComponent,
     UserMultipleSelectComponent,
-    UserGroupSingleSelectComponent
+    UserGroupSingleSelectComponent,
+    AudioVideoCallComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +44,7 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    MatCheckboxModule
+    MatCheckboxModule,
   ],
   providers: [
     {
