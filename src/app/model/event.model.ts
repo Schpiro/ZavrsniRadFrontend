@@ -1,6 +1,6 @@
 export interface Event {
-    creator: String;
-    details: String;
-    creationDate: Date;
+    id: number|undefined
+    creator: number;
+    details: string;
+    creationDate: number;
   }
-  

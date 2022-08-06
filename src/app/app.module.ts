@@ -20,6 +20,8 @@ import { UserGroupSingleSelectComponent } from './component/user/user-group-sing
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import { AudioVideoCallComponent } from './component/audio-video-call/audio-video-call.component';
+import { EventCreateComponent } from './component/event/event-create/event-create.component';
+import { EventDetailsComponent } from './component/event/event-details/event-details.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { AudioVideoCallComponent } from './component/audio-video-call/audio-vide
     UserGroupSingleSelectComponent,
     UserMultipleSelectComponent,
     UserGroupSingleSelectComponent,
-    AudioVideoCallComponent
+    AudioVideoCallComponent,
+    EventCreateComponent,
+    EventDetailsComponent
   ],
   imports: [
     BrowserModule,

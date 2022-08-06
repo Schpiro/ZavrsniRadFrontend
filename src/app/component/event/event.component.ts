@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Eventservice } from '../../service/event.service';
+import { EventService } from '../../service/event.service';
 import { Event } from '../../model/event.model';
 import {AuthenticationService} from "../../service/authentication.service";
 
@@ -13,9 +13,7 @@ export class EventComponent implements OnInit {
   events?: Event[];
 
   constructor(
-    private eventService: Eventservice,
-    private router: Router,
-    private authenticationService: AuthenticationService
+    private eventService: EventService,
   ) { }
 
   ngOnInit(): void {

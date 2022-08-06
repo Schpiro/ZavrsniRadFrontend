@@ -1,0 +1,13 @@
+<div>
+  <h3>Create event</h3>
+  <div>
+    <label>details:
+      <div>
+        <input #Details />
+      </div>
+    </label>
+  </div>
+  <button (click)="createEvent(Details.value);Details.value='';">
+    Send
+  </button>
+</div>
