@@ -2,5 +2,5 @@ export interface Event {
     id: number|undefined
     creator: number;
     details: string;
-    creationDate: number;
+    creationDate: string;
   }

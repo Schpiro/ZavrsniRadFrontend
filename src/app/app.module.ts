@@ -22,6 +22,7 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
 import { AudioVideoCallComponent } from './component/audio-video-call/audio-video-call.component';
 import { EventCreateComponent } from './component/event/event-create/event-create.component';
 import { EventDetailsComponent } from './component/event/event-details/event-details.component';
+import { CommentCreateComponent } from './component/comment/comment-create/comment-create.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { EventDetailsComponent } from './component/event/event-details/event-det
     UserGroupSingleSelectComponent,
     AudioVideoCallComponent,
     EventCreateComponent,
-    EventDetailsComponent
+    EventDetailsComponent,
+    CommentCreateComponent
   ],
   imports: [
     BrowserModule,

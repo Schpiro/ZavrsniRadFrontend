@@ -42,6 +42,15 @@ export class EventService {
       );
   }
 
+  createComment(comment: Comment, code: number): Observable<Comment> {
+    const url = `${this.eventsUrl}/comments/${code}`;
+    return this.http.post<Comment>(url,comment,this.httpOptions)
+      .pipe(
+        tap((newComment: Comment) => console.log(`Sucesfully created comment: ${newComment}`)),
+        catchError(this.handleError<Comment>('createComment'))
+      )
+  }
+
   getEventsByUsername(Username: string): Observable<Event[]> {
     const params = new HttpParams().set('Username', Username);
 

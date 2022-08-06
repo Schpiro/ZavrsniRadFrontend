@@ -17,6 +17,5 @@ export class EventDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.eventService.getEventComments(<number>this.event.id).subscribe(comments => this.comments=comments)
-    console.log(this.comments)
   }
 }

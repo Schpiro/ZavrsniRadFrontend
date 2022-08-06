@@ -1,6 +1,6 @@
 export interface Comment{
-  creatorId: number,
+  creator: number,
   commentBody: string,
-  creationDate: number,
+  creationDate: string,
   parentCommentId: number|undefined
 }

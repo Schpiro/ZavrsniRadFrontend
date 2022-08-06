@@ -15,11 +15,13 @@ export class EventCreateComponent implements OnInit {
   }
 
   createEvent(details: string){
+    var dateString = new Date().toISOString();
+
     this.eventService.createEvent({
       id:undefined,
       creator:this.authService.getAuthenticatedUserID(),
       details:details,
-      creationDate:Date.now()
+      creationDate:dateString
     }).subscribe(res => console.log(res))
 
   }

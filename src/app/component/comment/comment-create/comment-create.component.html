@@ -1,0 +1,13 @@
+<div>
+  <h3>Comment on event!</h3>
+  <div>
+    <label>Whats on your mind:
+      <div>
+        <input #CommentBody />
+      </div>
+    </label>
+  </div>
+  <button (click)="createComment(CommentBody.value);CommentBody.value='';">
+    Send
+  </button>
+</div>
