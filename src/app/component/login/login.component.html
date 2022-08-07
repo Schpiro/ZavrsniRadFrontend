@@ -31,6 +31,11 @@
                 class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
                 *ngIf="authenticating"></span>
               </button>
+              <button (click)="buttonRegisterClick()" [disabled]="authenticating"
+                      class="btn btn-lg btn-primary btn-block mt-3" type="submit">Register<span
+                class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
+                *ngIf="authenticating"></span>
+              </button>
               <div class="text-danger mt-2" *ngIf="authenticationError">Došlo je do pogreške prilikom prijave, provjerite uneseno korisničko ime i lozinku te pokušajte ponovno.</div>
             </form>
           </div>

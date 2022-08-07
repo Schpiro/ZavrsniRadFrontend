@@ -19,6 +19,10 @@ export class AuthenticationService {
     return this.http.post<Jwt>(`${this.rootUrl}/login`, login);
   }
 
+  register(login: Login){
+    return this.http.post<Jwt>(`${this.rootUrl}/register`, login)
+  }
+
   saveJwtToLocalStorage(jwt: string) {
     localStorage.setItem('accessToken', jwt);
   }
