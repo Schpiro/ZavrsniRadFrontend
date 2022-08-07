@@ -15,11 +15,11 @@ export class WebsocketService {
   constructor(
     public authenticationService: AuthenticationService,
   ) {
-    this.socket = new WebSocket(url);
-    this.socket.onopen = () => this.sendMessage({type:"CLIENT_ID", payload:this.authenticationService.getAuthenticatedUserID(),recipientIds:undefined,senderId: undefined});
-    this.socket.onmessage = (ev: MessageEvent) => {
-      this.webSocketMessage.emit(JSON.parse(ev.data));
-    };
+    this.socket = this.createWsConnection();
+    this.socket.onclose = () => {
+      console.log("reconnecting")
+      this.socket = this.createWsConnection();
+    }
   }
 
   ngOnInit() {
@@ -27,5 +27,14 @@ export class WebsocketService {
 
   public sendMessage(webSocketMessage: WebSocketMessage) {
     this.socket.send(JSON.stringify(webSocketMessage));
+  }
+
+  private createWsConnection(): WebSocket{
+    let socket = new WebSocket(url);
+    socket.onopen = () => this.sendMessage({type:"CLIENT_ID", payload:this.authenticationService.getAuthenticatedUserID(),recipientIds:undefined,senderId: undefined});
+    socket.onmessage = (ev: MessageEvent) => {
+      this.webSocketMessage.emit(JSON.parse(ev.data));
+    };
+    return socket;
   }
 }
