@@ -5,7 +5,8 @@ import {Comment} from "../../../model/comment.model";
 import {Event} from "../../../model/event.model";
 
 @Component({
-  selector: 'app-comment-create',
+  selector: '' +
+    'app-comment-create',
   templateUrl: './comment-create.component.html',
   styleUrls: ['./comment-create.component.css']
 })
@@ -20,6 +21,7 @@ export class CommentCreateComponent implements OnInit {
   createComment(commentBody: string) {
     var dateString = new Date().toISOString();
     let comment: Comment = {
+      id: 0,
       creator: this.authService.getAuthenticatedUserID(),
       commentBody: commentBody,
       creationDate: dateString,

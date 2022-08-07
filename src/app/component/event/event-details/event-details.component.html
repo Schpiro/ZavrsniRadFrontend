@@ -1,4 +1,6 @@
-<li *ngFor="let comment of comments">
+<li *ngFor="let comment of getParentComments()">
   <div>{{comment.creator}} - {{comment.commentBody}}</div>
+  <!--<ul *ngFor="let comment of getChildComments(comment.id)"></ul>-->
 </li>
-<app-comment-create [event]="event"></app-comment-create>
+<button (click)="createCommentShow=!createCommentShow">Reply</button>
+<app-comment-create *ngIf="createCommentShow" [event]="event"></app-comment-create>

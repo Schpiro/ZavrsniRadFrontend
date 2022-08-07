@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EventService } from '../../service/event.service';
 import { Event } from '../../model/event.model';
+import {WebsocketService} from "../../service/websocket.service";
 
 @Component({
   selector: 'app-event',
@@ -12,6 +13,7 @@ export class EventComponent implements OnInit {
 
   constructor(
     private eventService: EventService,
+    private webSocketService: WebsocketService,
   ) { }
 
   ngOnInit(): void {

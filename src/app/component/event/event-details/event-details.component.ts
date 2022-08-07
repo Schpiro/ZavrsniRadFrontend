@@ -12,10 +12,21 @@ export class EventDetailsComponent implements OnInit {
   @Input()
   event!: Event;
   comments?: Comment[];
+  createCommentShow: boolean = false;
 
   constructor(private eventService: EventService) { }
 
   ngOnInit(): void {
     this.eventService.getEventComments(<number>this.event.id).subscribe(comments => this.comments=comments)
+  }
+
+  getParentComments(): Comment[] | undefined{
+    return this.comments?.filter(x => {
+      return x.parentCommentId == undefined;
+    });
+  }
+
+  getChildComments(parentId: number): Comment[] | undefined{
+    return this.comments;
   }
 }
