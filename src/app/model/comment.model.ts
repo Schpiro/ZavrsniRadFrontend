@@ -1,5 +1,6 @@
 export interface Comment {
   id: number,
+  eventId: number,
   creator: number,
   commentBody: string,
   creationDate: string,

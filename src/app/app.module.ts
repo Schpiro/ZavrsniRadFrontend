@@ -23,6 +23,7 @@ import { AudioVideoCallComponent } from './component/audio-video-call/audio-vide
 import { EventCreateComponent } from './component/event/event-create/event-create.component';
 import { EventDetailsComponent } from './component/event/event-details/event-details.component';
 import { CommentCreateComponent } from './component/comment/comment-create/comment-create.component';
+import { RegisterComponent } from './component/register/register.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { CommentCreateComponent } from './component/comment/comment-create/comme
     AudioVideoCallComponent,
     EventCreateComponent,
     EventDetailsComponent,
-    CommentCreateComponent
+    CommentCreateComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
