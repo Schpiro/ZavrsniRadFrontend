@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {EventService} from "../../../service/event.service";
 import {AuthenticationService} from "../../../service/authentication.service";
+import {WebSocketMessage} from "../../../model/web-socket-message.model";
+import {Event} from "../../../model/event.model";
 
 @Component({
   selector: 'app-event-create',
@@ -8,6 +10,7 @@ import {AuthenticationService} from "../../../service/authentication.service";
   styleUrls: ['./event-create.component.css']
 })
 export class EventCreateComponent implements OnInit {
+  @Output() webSocketMessage = new EventEmitter<WebSocketMessage>();
 
   constructor(private eventService: EventService, private authService: AuthenticationService) { }
 
@@ -15,14 +18,17 @@ export class EventCreateComponent implements OnInit {
   }
 
   createEvent(details: string){
-    var dateString = new Date().toISOString();
-
-    this.eventService.createEvent({
-      id:undefined,
+    let event: Event = {
+      id:0,
       creator:this.authService.getAuthenticatedUserID(),
       details:details,
-      creationDate:dateString
-    }).subscribe(res => console.log(res))
+      creationDate:Date.now().toString()
+    }
+
+    this.eventService.createEvent(event).subscribe(res => {console.log(res)
+      event.id = res.id
+      this.webSocketMessage.emit({type:"NEW_EVENT",payload:event,recipientIds:undefined,senderId: undefined})
+    })
 
   }
 }

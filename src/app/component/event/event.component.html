@@ -2,7 +2,7 @@
 <ul class="events">
   <li *ngFor="let event of events">
       {{event.creator}} - {{event.details}}
-      <app-event-details [event]="event"></app-event-details>
+      <app-event-details [event]="event" ></app-event-details>
   </li>
 </ul>
-<app-event-create></app-event-create>
+<app-event-create (webSocketMessage)="sendMessage($event)"></app-event-create>

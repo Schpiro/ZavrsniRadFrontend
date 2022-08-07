@@ -1,7 +1,8 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {EventService} from "../../../service/event.service";
 import {Event} from "../../../model/event.model";
 import {Comment} from "../../../model/comment.model";
+import {WebSocketMessage} from "../../../model/web-socket-message.model";
 
 @Component({
   selector: 'app-event-details',
@@ -9,8 +10,7 @@ import {Comment} from "../../../model/comment.model";
   styleUrls: ['./event-details.component.css']
 })
 export class EventDetailsComponent implements OnInit {
-  @Input()
-  event!: Event;
+  @Input() event!: Event;
   comments?: Comment[];
   createCommentShow: boolean = false;
 
