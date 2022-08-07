@@ -2,6 +2,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {User} from "../../../model/user.model";
 import {UserService} from "../../../service/user.service";
 import {UserSelect} from "../../../model/user.select.model";
+import {AuthenticationService} from "../../../service/authentication.service";
 
 @Component({
   selector: 'app-user-multiple-select',
@@ -13,12 +14,13 @@ export class UserMultipleSelectComponent implements OnInit {
   users: UserSelect[] = [];
 
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    private authService: AuthenticationService
   ) { }
 
   ngOnInit(): void {
     this.userService.getUsers()
-      .subscribe(users => this.users = this.mapUserToUserSelect(users));
+      .subscribe(users => this.users = this.mapUserToUserSelect(users.filter(x=>x.id!=this.authService.getAuthenticatedUserID())));
   }
 
   mapUserToUserSelect(users:User[]): UserSelect[]{

@@ -3,6 +3,7 @@ import {MessageGroup} from "../../../model/message-groups.model";
 import {User} from "../../../model/user.model";
 import {WebSocketMessage} from "../../../model/web-socket-message.model";
 import {UserService} from "../../../service/user.service";
+import {AuthenticationService} from "../../../service/authentication.service";
 
 @Component({
   selector: 'app-user-group-create',
@@ -14,7 +15,8 @@ export class UserGroupCreateComponent implements OnInit {
   @Output() webSocketMessage = new EventEmitter<WebSocketMessage>();
 
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    private authService: AuthenticationService
   ) { }
 
   ngOnInit(): void {
@@ -22,6 +24,7 @@ export class UserGroupCreateComponent implements OnInit {
 
   createMessageGroup(groupName: string, users: User[]): void{
     const userIdsNo: number[] = [];
+    userIdsNo.push(this.authService.getAuthenticatedUserID());
     for (let i = 0; i < users.length; i++) {
       userIdsNo.push(users[i].id);
     }
