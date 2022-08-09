@@ -1,5 +1,5 @@
 <ul class="message">
   <li *ngFor="let message of message">
-    <div [ngStyle]="{'color':thisUsersMessage(message.creator)?'blue':'red'}">{{message.creator}} - {{message.messageBody}} - {{message.creationDate}}</div>
+    <div [ngStyle]="{'color':thisUsersMessage(message.creatorId)?'blue':'red'}">{{message.creator}} - {{message.messageBody}} - {{message.creationDate}}</div>
   </li>
 </ul>

@@ -17,7 +17,7 @@ export class MessageFetchComponent implements OnInit, OnChanges {
   constructor(
     private messageService: MessageService,
     private webSocketService: WebsocketService,
-    private authService: AuthenticationService
+    private authService: AuthenticationService,
   ) {
   }
 
@@ -54,9 +54,19 @@ export class MessageFetchComponent implements OnInit, OnChanges {
       if (this.selectedRecipient
           && (this.selectedRecipient.hasOwnProperty("groupName")
           && message.recipientGroupId === this.selectedRecipient.id)
-          || message.recipientId === this.selectedRecipient.id)
+          || message.recipientId === this.selectedRecipient.id) {
+        this.notification();
         this.message?.push(message);
+      }
     }
+  }
+
+  notification(){
+    //ne radi za chrome? potrebno fixat
+    let audio = new Audio();
+    audio.src = "../../../../assets/notification.mp3";
+    audio.load();
+    audio.play();
   }
 
   thisUsersMessage(id: any): boolean {
