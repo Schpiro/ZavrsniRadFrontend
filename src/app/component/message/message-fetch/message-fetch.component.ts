@@ -52,9 +52,9 @@ export class MessageFetchComponent implements OnInit, OnChanges {
       let message = <Message>webSocketMessage.payload;
 
       if (this.selectedRecipient
-          && (this.selectedRecipient.hasOwnProperty("groupName")
+          && ((this.selectedRecipient.hasOwnProperty("groupName")
           && message.recipientGroupId === this.selectedRecipient.id)
-          || message.recipientId === this.selectedRecipient.id) {
+          || message.recipientId === this.selectedRecipient.id)) {
         this.notification();
         this.message?.push(message);
       }
