@@ -25,7 +25,7 @@ export class EventDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.eventService.getEventComments(<number>this.event.id).subscribe(comments => this.comments = comments)
     this.webSocketService.webSocketMessage.subscribe(x => this.appendMessage(x))
-
+    console.log(this.event);
   }
 
   getParentComments(): Comment[] | undefined {

@@ -21,15 +21,18 @@ export class EventCreateComponent implements OnInit {
 
   openDialog() {
     this.dialog.open(CreateEventDialog).afterClosed().subscribe(x => {
-        if (x.action == "CREATE") this.createEvent(x.name);
+        if (x.action == "CREATE") this.createEvent(x.name,"test","test");
       }
     )
   }
 
-  createEvent(details: string){
+  createEvent(title: string, details: string, evLocation: string){
     let event: Event = {
       id:0,
       creator:this.authService.getAuthenticatedUserID(),
+      date:Date.now().toString(),
+      title:title,
+      location: evLocation,
       details:details,
       creationDate:Date.now().toString()
     }
