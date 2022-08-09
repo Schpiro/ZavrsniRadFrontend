@@ -47,11 +47,13 @@ export class MessageFetchComponent implements OnInit, OnChanges {
   }
 
   appendMessage(webSocketMessage: WebSocketMessage): void{
-    let message = <Message>webSocketMessage.payload;
+    if(webSocketMessage.type=="NEW_MESSAGE") {
+      let message = <Message>webSocketMessage.payload;
 
-    if((this.selectedRecipient.hasOwnProperty("groupName") && message.recipientGroupId === this.selectedRecipient.id)
+      if ((this.selectedRecipient.hasOwnProperty("groupName") && message.recipientGroupId === this.selectedRecipient.id)
         || message.recipientId === this.selectedRecipient.id)
-            this.message?.push(message);
+        this.message?.push(message);
+    }
   }
 
   thisUsersMessage(id: any): boolean{

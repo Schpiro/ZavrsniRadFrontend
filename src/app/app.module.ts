@@ -29,6 +29,10 @@ import { CommentCreateComponent } from './component/comment/comment-create/comme
 import { RegisterComponent } from './component/register/register.component';
 import {MatButtonModule} from "@angular/material/button";
 import {MatDialogModule} from "@angular/material/dialog";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule} from '@angular/material/core';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -62,6 +66,10 @@ import {MatDialogModule} from "@angular/material/dialog";
     MatCheckboxModule,
     MatButtonModule,
     MatDialogModule,
+    MatFormFieldModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatInputModule
   ],
   providers: [
     {

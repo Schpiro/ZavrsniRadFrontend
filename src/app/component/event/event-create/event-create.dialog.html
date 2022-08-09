@@ -1,13 +1,38 @@
 <h1 mat-dialog-title>Create event:</h1>
 <div mat-dialog-content>
   <div>
-    <label>Name:
-      <div>
-        <input #Name />
-      </div>
-    </label>
+    <div>
+      <label>Name:
+        <div>
+          <input #Name/>
+        </div>
+      </label>
+    </div>
+    <div>
+      <label>Time:
+        <div>
+          <mat-form-field>
+            <input matInput type="datetime-local" #Time>
+          </mat-form-field>
+        </div>
+      </label>
+    </div>
+    <div>
+      <label>Location:
+        <div>
+          <input #Location/>
+        </div>
+      </label>
+    </div>
+    <div>
+      <label>Details:
+        <div>
+          <input #Details/>
+        </div>
+      </label>
+    </div>
+    <button (click)="createButtonAction(Name.value, Time.value, Location.value, Details.value)">
+      Create event
+    </button>
   </div>
-  <button (click)="doAction(Name.value)">
-    Create event
-  </button>
 </div>
