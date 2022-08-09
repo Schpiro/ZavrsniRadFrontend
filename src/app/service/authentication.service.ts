@@ -38,7 +38,7 @@ export class AuthenticationService {
     return usernameKey != null;
   }
 
-  getAuthenticatedUserUsername() {
+  getAuthenticatedUserUsername(): string {
     const decodedToken = this.decodeJwt();
     let username = null;
     if (decodedToken != null) {
@@ -49,6 +49,7 @@ export class AuthenticationService {
         username = decodedToken[usernameKey]
       }
     }
+    // @ts-ignore
     return username;
   }
 

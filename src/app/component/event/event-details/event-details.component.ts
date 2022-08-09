@@ -39,8 +39,6 @@ export class EventDetailsComponent implements OnInit {
   }
 
   appendMessage(webSocketMessage: WebSocketMessage): void {
-    console.log(webSocketMessage)
-    console.log(this.event.id)
     if (webSocketMessage.type == "NEW_COMMENT" && (<Comment>webSocketMessage.payload).eventId === this.event.id) this.comments?.push(<Comment>webSocketMessage.payload);
   }
 

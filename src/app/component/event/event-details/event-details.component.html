@@ -1,4 +1,6 @@
-
+<li>
+  {{event.details}} - {{event.date}} - {{event.location}}
+</li>
 <button (click)="createCommentShow=!createCommentShow">Reply</button>
 <app-comment-create *ngIf="createCommentShow" [event]="event" (webSocketMessage)="emitEvent($event)"></app-comment-create>
 <li *ngFor="let comment of getParentComments()">

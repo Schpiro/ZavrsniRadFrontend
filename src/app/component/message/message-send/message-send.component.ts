@@ -26,10 +26,11 @@ export class MessageSendComponent implements OnInit {
     let recipientId = this.selectedRecipient.id;
 
     let message: Message = {
+      creator: this.authenticationService.getAuthenticatedUserUsername(),
       recipientId: group?undefined:recipientId,
       recipientGroupId: group?recipientId:undefined,
       messageBody: JSON.stringify(messageBody),
-      creator: this.authenticationService.getAuthenticatedUserID(),
+      creatorId: this.authenticationService.getAuthenticatedUserID(),
       groupParticipantsIds: undefined,
       parentMessage: undefined,
       creationDate: Date.now().toString()

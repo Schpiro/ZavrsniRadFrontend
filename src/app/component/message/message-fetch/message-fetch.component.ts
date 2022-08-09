@@ -18,15 +18,16 @@ export class MessageFetchComponent implements OnInit, OnChanges {
     private messageService: MessageService,
     private webSocketService: WebsocketService,
     private authService: AuthenticationService
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
-    this.webSocketService.webSocketMessage.subscribe(x => this.appendMessage(x) )
+    this.webSocketService.webSocketMessage.subscribe(x => this.appendMessage(x))
   }
 
   ngOnChanges(changes: SimpleChanges) {
     //Trebao bi biti instanceof umjesto ovog scuffed
-    if(this.selectedRecipient) {
+    if (this.selectedRecipient) {
       if (this.selectedRecipient.hasOwnProperty("groupName")) {
         this.getGroupConversation();
       } else {
@@ -46,17 +47,19 @@ export class MessageFetchComponent implements OnInit, OnChanges {
       .subscribe(message => this.message = message)
   }
 
-  appendMessage(webSocketMessage: WebSocketMessage): void{
-    if(webSocketMessage.type=="NEW_MESSAGE") {
+  appendMessage(webSocketMessage: WebSocketMessage): void {
+    if (webSocketMessage.type == "NEW_MESSAGE") {
       let message = <Message>webSocketMessage.payload;
 
-      if ((this.selectedRecipient.hasOwnProperty("groupName") && message.recipientGroupId === this.selectedRecipient.id)
-        || message.recipientId === this.selectedRecipient.id)
+      if (this.selectedRecipient
+          && (this.selectedRecipient.hasOwnProperty("groupName")
+          && message.recipientGroupId === this.selectedRecipient.id)
+          || message.recipientId === this.selectedRecipient.id)
         this.message?.push(message);
     }
   }
 
-  thisUsersMessage(id: any): boolean{
+  thisUsersMessage(id: any): boolean {
     return id == this.authService.getAuthenticatedUserID();
   }
 }
