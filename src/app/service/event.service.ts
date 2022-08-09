@@ -9,7 +9,7 @@ import {Comment} from "../model/comment.model";
 })
 export class EventService {
 
-  private eventsUrl = 'https://localhost:8080/event';
+  private eventsUrl = 'https://localhost:8081/event';
 
   httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})

@@ -1,0 +1,16 @@
+<h1 mat-dialog-title>Create group:</h1>
+<div mat-dialog-content>
+  <div>
+    <label>Name:
+      <div>
+        <input #Name />
+      </div>
+    </label>
+  </div>
+  <div>
+    <app-user-multiple-select (newItemEvent)="this.users=$event"></app-user-multiple-select>
+  </div>
+  <button (click)="doAction(Name.value)">
+    Create group
+  </button>
+</div>

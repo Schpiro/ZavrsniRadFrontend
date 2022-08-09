@@ -3,6 +3,7 @@ import {Message} from "../../../model/message.model";
 import {MessageService} from "../../../service/message.service";
 import {WebsocketService} from "../../../service/websocket.service";
 import {WebSocketMessage} from "../../../model/web-socket-message.model";
+import {AuthenticationService} from "../../../service/authentication.service";
 
 @Component({
   selector: 'app-message-fetch',
@@ -15,7 +16,8 @@ export class MessageFetchComponent implements OnInit, OnChanges {
 
   constructor(
     private messageService: MessageService,
-    private webSocketService: WebsocketService
+    private webSocketService: WebsocketService,
+    private authService: AuthenticationService
   ) {}
 
   ngOnInit(): void {
@@ -30,6 +32,7 @@ export class MessageFetchComponent implements OnInit, OnChanges {
       } else {
         this.getConversation();
       }
+      console.log(this.message)
     }
   }
 
@@ -49,5 +52,9 @@ export class MessageFetchComponent implements OnInit, OnChanges {
     if((this.selectedRecipient.hasOwnProperty("groupName") && message.recipientGroupId === this.selectedRecipient.id)
         || message.recipientId === this.selectedRecipient.id)
             this.message?.push(message);
+  }
+
+  thisUsersMessage(id: any): boolean{
+    return id == this.authService.getAuthenticatedUserID();
   }
 }

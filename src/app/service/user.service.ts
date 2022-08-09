@@ -8,7 +8,7 @@ import {MessageGroup} from "../model/message-groups.model";
   providedIn: 'root'
 })
 export class UserService {
-  private userUrl = 'https://localhost:8080/users';
+  private userUrl = 'https://localhost:8081/users';
 
   httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})

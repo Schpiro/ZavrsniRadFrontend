@@ -14,7 +14,10 @@ import { EventComponent } from './component/event/event.component';
 import { MessageComponent } from './component/message/message.component';
 import { MessageFetchComponent } from './component/message/message-fetch/message-fetch.component';
 import {MessageSendComponent} from "./component/message/message-send/message-send.component";
-import { UserGroupCreateComponent } from './component/user/user-group-create/user-group-create.component';
+import {
+  UserGroupCreateComponent,
+  UserGroupCreateDialog
+} from './component/user/user-group-create/user-group-create.component';
 import { UserMultipleSelectComponent } from './component/user/user-multiple-select/user-multiple-select.component';
 import { UserGroupSingleSelectComponent } from './component/user/user-group-single-select/user-group-single-select.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -23,6 +26,9 @@ import { AudioVideoCallComponent } from './component/audio-video-call/audio-vide
 import { EventCreateComponent } from './component/event/event-create/event-create.component';
 import { EventDetailsComponent } from './component/event/event-details/event-details.component';
 import { CommentCreateComponent } from './component/comment/comment-create/comment-create.component';
+import { RegisterComponent } from './component/register/register.component';
+import {MatButtonModule} from "@angular/material/button";
+import {MatDialogModule} from "@angular/material/dialog";
 
 @NgModule({
   declarations: [
@@ -43,6 +49,8 @@ import { CommentCreateComponent } from './component/comment/comment-create/comme
     EventCreateComponent,
     EventDetailsComponent,
     CommentCreateComponent,
+    RegisterComponent,
+    UserGroupCreateDialog
   ],
   imports: [
     BrowserModule,
@@ -51,6 +59,8 @@ import { CommentCreateComponent } from './component/comment/comment-create/comme
     FormsModule,
     BrowserAnimationsModule,
     MatCheckboxModule,
+    MatButtonModule,
+    MatDialogModule,
   ],
   providers: [
     {

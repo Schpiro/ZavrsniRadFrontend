@@ -109,5 +109,8 @@
       }
     }
   },
-  "defaultProject": "zavrsni-frontend"
+  "defaultProject": "zavrsni-frontend",
+  "cli": {
+    "analytics": false
+  }
 }

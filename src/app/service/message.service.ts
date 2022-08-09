@@ -8,7 +8,7 @@ import { Message } from '../model/message.model';
 })
 export class MessageService {
 
-  private messagesUrl = 'https://localhost:8080/message';
+  private messagesUrl = 'https://localhost:8081/message';
 
   httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
