@@ -1,11 +1,11 @@
 import {Component} from '@angular/core';
-import {Title} from "@angular/platform-browser";
 import {User} from "../../model/user.model";
 import {MessageGroup} from "../../model/message-groups.model";
 import {MessageService} from "../../service/message.service";
 import {UserService} from "../../service/user.service";
 import {WebsocketService} from "../../service/websocket.service";
 import {WebSocketMessage} from "../../model/web-socket-message.model";
+import {Event} from "../../model/event.model";
 
 @Component({
   selector: 'app-home',
@@ -15,6 +15,7 @@ import {WebSocketMessage} from "../../model/web-socket-message.model";
 export class HomeComponent {
   messages: boolean = true;
   selectedRecipient?: User | MessageGroup;
+  selectedEvent?: Event;
   users?: User[];
   messageGroups?: MessageGroup[];
 

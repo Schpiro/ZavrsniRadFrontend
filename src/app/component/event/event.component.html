@@ -1,8 +1,6 @@
-<h2>Events</h2>
 <ul class="events">
-  <li *ngFor="let event of events">
+  <li *ngFor="let event of events" (click)="selectedEvent=event">
       {{event.creator}} - {{event.details}}
-      <app-event-details [event]="event" (webSocketMessage)="sendMessage($event)"></app-event-details>
+      <app-event-details *ngIf="selectedEvent===event" [event]="selectedEvent!" (webSocketMessage)="sendMessage($event)"></app-event-details>
   </li>
 </ul>
-<app-event-create (webSocketMessage)="sendMessage($event)"></app-event-create>

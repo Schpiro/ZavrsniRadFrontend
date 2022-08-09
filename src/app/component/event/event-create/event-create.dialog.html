@@ -1,0 +1,13 @@
+<h1 mat-dialog-title>Create event:</h1>
+<div mat-dialog-content>
+  <div>
+    <label>Name:
+      <div>
+        <input #Name />
+      </div>
+    </label>
+  </div>
+  <button (click)="doAction(Name.value)">
+    Create event
+  </button>
+</div>

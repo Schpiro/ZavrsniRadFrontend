@@ -1,9 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Output} from '@angular/core';
 import {EventService} from '../../service/event.service';
 import {Event} from '../../model/event.model';
 import {WebsocketService} from "../../service/websocket.service";
 import {WebSocketMessage} from "../../model/web-socket-message.model";
-import {Message} from "../../model/message.model";
 
 @Component({
   selector: 'app-event',
@@ -11,6 +10,7 @@ import {Message} from "../../model/message.model";
   styleUrls: ['./event.component.css']
 })
 export class EventComponent implements OnInit {
+  @Output() selectedEvent!: Event;
   events?: Event[];
 
   constructor(

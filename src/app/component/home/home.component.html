@@ -19,17 +19,23 @@
     </div>
 
     <div>
-      <app-user-group-create (webSocketMessage)="sendMessage($event)"></app-user-group-create>
+      <app-user-group-create *ngIf="messages" (webSocketMessage)="sendMessage($event)"></app-user-group-create>
+      <app-event-create *ngIf="!messages" (webSocketMessage)="sendMessage($event)"></app-event-create>
     </div>
 
     <div>
-      <app-user-group-create (webSocketMessage)="sendMessage($event)"></app-user-group-create>
+      <button (click)="messages=!messages" mat-fab>EVENTS</button>
     </div>
 
 
   </div>
   <div *ngIf="messages" class="col-lg-11">
     <app-message-fetch [selectedRecipient]="selectedRecipient"></app-message-fetch>
+    <app-message-send [selectedRecipient]="selectedRecipient" (webSocketMessage)="sendMessage($event)"></app-message-send>
+  </div>
+
+  <div *ngIf="!messages" class="col-lg-11">
+    <app-event></app-event>
   </div>
 </main>
 

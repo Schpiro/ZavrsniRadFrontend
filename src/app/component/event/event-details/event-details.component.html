@@ -1,6 +1,7 @@
+
+<button (click)="createCommentShow=!createCommentShow">Reply</button>
+<app-comment-create *ngIf="createCommentShow" [event]="event" (webSocketMessage)="emitEvent($event)"></app-comment-create>
 <li *ngFor="let comment of getParentComments()">
   <div>{{comment.creator}} - {{comment.commentBody}}</div>
   <!--<ul *ngFor="let comment of getChildComments(comment.id)"></ul>-->
 </li>
-<button (click)="createCommentShow=!createCommentShow">Reply</button>
-<app-comment-create *ngIf="createCommentShow" [event]="event" (webSocketMessage)="emitEvent($event)"></app-comment-create>

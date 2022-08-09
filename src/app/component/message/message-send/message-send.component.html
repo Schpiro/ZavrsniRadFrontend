@@ -1,13 +1,11 @@
 <div>
-  <h3>Send a message</h3>
   <div>
-    <label>Message:
       <div>
-        <input #Message />
+        <input class="col-lg-11" #Message />
+        <button class="col-1" (click)="sendMessage(Message.value);Message.value='';">
+          Send
+        </button>
       </div>
-    </label>
+
   </div>
-  <button (click)="sendMessage(Message.value);Message.value='';">
-    Send
-  </button>
 </div>

@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Inject, Input, OnInit, Optional, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {MessageGroup} from "../../../model/message-groups.model";
 import {User} from "../../../model/user.model";
 import {WebSocketMessage} from "../../../model/web-socket-message.model";
@@ -67,7 +67,7 @@ export class UserGroupCreateDialog {
       }
     });
 
-    this.dialogRef.backdropClick().subscribe(event => {
+    this.dialogRef.backdropClick().subscribe(() => {
       this.doCancel();
     });
   }
