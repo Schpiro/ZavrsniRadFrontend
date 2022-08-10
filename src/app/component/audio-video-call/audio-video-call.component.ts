@@ -109,7 +109,6 @@ export class AudioVideoCallDialog implements OnInit, AfterViewInit {
   }
 
   async handleMessage(webSocketMessage: WebSocketMessage): Promise<void> {
-    if (webSocketMessage.type === "OFFER") await this.audioVideoCallService.handleOffer(<RTCSessionDescriptionInit>webSocketMessage.payload, this.remoteVideo, this.selectedRecipientId);
     if (webSocketMessage.type === "ANSWER") await this.audioVideoCallService.handleAnswer(<RTCSessionDescriptionInit>webSocketMessage.payload);
     if (webSocketMessage.type === "ICE_CANDIDATE") await this.audioVideoCallService.handleIceCandidate(<RTCIceCandidate>webSocketMessage.payload);
     if (webSocketMessage.type === "END_CALL") this.closeDialog();
@@ -119,9 +118,9 @@ export class AudioVideoCallDialog implements OnInit, AfterViewInit {
     this.dialogRef.close({action: "CANCEL"})
   }
 
-  acceptCall() {
+  async acceptCall() {
     this.incomingCall = false;
-    this.handleMessage(this.data.offer)
+    await this.audioVideoCallService.handleOffer(<RTCSessionDescriptionInit>this.data.offer.payload, this.remoteVideo, this.selectedRecipientId);
   }
 
   closeCall() {
