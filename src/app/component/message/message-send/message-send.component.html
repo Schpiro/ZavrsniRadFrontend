@@ -2,8 +2,8 @@
 <div>
   <div>
       <div>
-        <input class="col-lg-11" #Message />
-        <button class="col-1" (click)="sendMessage(Message.value);Message.value='';">
+        <input class="col-lg-11" (keyup.enter)="sendMessage(Message.value);Message.value='';" #Message />
+        <button (click)="sendMessage(Message.value);Message.value='';">
           Send
         </button>
       </div>

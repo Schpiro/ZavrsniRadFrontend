@@ -37,9 +37,12 @@ export class AudioVideoCallService {
 
   public async declineCall(callerId: number[]): Promise<void>{
     this.websocketService.sendMessage(    {type:"END_CALL",payload:"Call declined",recipientIds:callerId,senderId:this.authService.getAuthenticatedUserID()});
-    //if(this.connection) {this.connection.close();
-    // @ts-ignore
-    //  delete this.connection}
+    if(this.connection) {this.connection.close();
+     // @ts-ignore
+      this.connection = null
+      this.connection.onicecandidate = null;
+      this.connection.ontrack = null;
+    }
   }
 
   public async handleOffer(offer: RTCSessionDescriptionInit, remoteVideo: ElementRef, selectedRecipient: any): Promise<void> {

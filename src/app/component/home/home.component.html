@@ -29,7 +29,7 @@
 
 
   </div>
-  <div *ngIf="messages" class="col-lg-11">
+  <div *ngIf="messages&&selectedRecipient!=undefined" class="col-lg-11">
     <app-message-fetch [selectedRecipient]="selectedRecipient"></app-message-fetch>
     <app-message-send [selectedRecipient]="selectedRecipient" (webSocketMessage)="sendMessage($event)"></app-message-send>
   </div>
