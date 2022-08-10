@@ -22,7 +22,7 @@ import { UserMultipleSelectComponent } from './component/user/user-multiple-sele
 import { UserGroupSingleSelectComponent } from './component/user/user-group-single-select/user-group-single-select.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatCheckboxModule} from "@angular/material/checkbox";
-import { AudioVideoCallComponent } from './component/audio-video-call/audio-video-call.component';
+import { AudioVideoCallComponent, AudioVideoCallDialog } from './component/audio-video-call/audio-video-call.component';
 import { EventCreateComponent, CreateEventDialog } from './component/event/event-create/event-create.component';
 import { EventDetailsComponent } from './component/event/event-details/event-details.component';
 import { CommentCreateComponent } from './component/comment/comment-create/comment-create.component';
@@ -55,7 +55,8 @@ import { MatInputModule } from '@angular/material/input';
     CommentCreateComponent,
     RegisterComponent,
     UserGroupCreateDialog,
-    CreateEventDialog
+    CreateEventDialog,
+    AudioVideoCallDialog
   ],
   imports: [
     BrowserModule,

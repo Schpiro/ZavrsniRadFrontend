@@ -1,8 +1,6 @@
 import {Component} from '@angular/core';
 import {User} from "../../model/user.model";
 import {MessageGroup} from "../../model/message-groups.model";
-import {MessageService} from "../../service/message.service";
-import {UserService} from "../../service/user.service";
 import {WebsocketService} from "../../service/websocket.service";
 import {WebSocketMessage} from "../../model/web-socket-message.model";
 import {Event} from "../../model/event.model";
@@ -16,21 +14,12 @@ export class HomeComponent {
   messages: boolean = true;
   selectedRecipient?: User | MessageGroup;
   selectedEvent?: Event;
-  users?: User[];
-  messageGroups?: MessageGroup[];
 
   constructor(
-    private messageService: MessageService,
-    private userService: UserService,
     private webSocketService: WebsocketService
   ) { }
 
-  ngOnInit(): void {
-    this.userService.getUsers()
-      .subscribe(users => this.users = users);
-    this.userService.getUsersMessageGroups()
-      .subscribe(messageGroups => this.messageGroups = messageGroups);
-  }
+  ngOnInit(): void {}
 
   sendMessage(event: WebSocketMessage) {
     console.log(event);

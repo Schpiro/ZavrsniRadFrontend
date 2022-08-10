@@ -76,4 +76,3 @@ export class CreateEventDialog {
     this.dialogRef.close({action: "CANCEL"})
   }
 }
-

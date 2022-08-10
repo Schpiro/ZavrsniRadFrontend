@@ -1,6 +1,7 @@
 import {ElementRef, Injectable} from '@angular/core';
 import {WebsocketService} from "./websocket.service";
 import {AuthenticationService} from "./authentication.service";
+import {WebSocketMessage} from "../model/web-socket-message.model";
 
 @Injectable({
   providedIn: 'root',
@@ -25,7 +26,7 @@ export class AudioVideoCallService {
   private async initConnection(remoteVideo: ElementRef, selectedRecipient: any): Promise<void> {
     this.connection = new RTCPeerConnection(this.configuration);
     await this.getStreams(remoteVideo);
-    this.registerConnectionListeners(selectedRecipient);
+    await this.registerConnectionListeners(selectedRecipient);
   }
 
   public async makeCall(remoteVideo: ElementRef, selectedRecipient: any): Promise<void> {
@@ -40,10 +41,12 @@ export class AudioVideoCallService {
     await this.connection.setRemoteDescription(new RTCSessionDescription(offer));
     const answer = await this.connection.createAnswer();
     await this.connection.setLocalDescription(answer);
-    this.websocketService.sendMessage({type: 'ANSWER', payload: answer,recipientIds:selectedRecipient,senderId: this.authService.getAuthenticatedUserID()});
+    let message = {type: 'ANSWER', payload: answer,recipientIds:selectedRecipient,senderId: this.authService.getAuthenticatedUserID()}
+    console.log(message)
+    this.websocketService.sendMessage(message);
   }
 
-  async handleAnswer(answer: RTCSessionDescriptionInit) {
+  async handleAnswer(answer: RTCSessionDescriptionInit, selectedRecipient: any) {
     await this.connection.setRemoteDescription(new RTCSessionDescription(answer));
   }
 
@@ -73,7 +76,7 @@ export class AudioVideoCallService {
     });
   }
 
-  private registerConnectionListeners(selectedRecipient: any) {
+  private async registerConnectionListeners(selectedRecipient: any) {
     this.connection.onicecandidate = (event) => {
       if (event.candidate) {
         this.websocketService.sendMessage({type: "ICE_CANDIDATE", payload: event.candidate,recipientIds:selectedRecipient,senderId: this.authService.getAuthenticatedUserID()});
