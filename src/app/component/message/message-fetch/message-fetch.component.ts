@@ -69,6 +69,17 @@ export class MessageFetchComponent implements OnInit, OnChanges {
     audio.play();
   }
 
+  getNameOfRecipient(): string{
+    if (this.selectedRecipient) {
+      if (this.selectedRecipient.hasOwnProperty("groupName")) {
+        return this.selectedRecipient.groupName
+      } else {
+        return this.selectedRecipient.username
+      }
+    }
+    return "";
+  }
+
   thisUsersMessage(id: any): boolean {
     return id == this.authService.getAuthenticatedUserID();
   }

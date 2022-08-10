@@ -1,8 +1,11 @@
-import {Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
+import {Component, ElementRef, Inject, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild} from '@angular/core';
 import {WebsocketService} from "../../service/websocket.service";
 import {WebSocketMessage} from "../../model/web-socket-message.model";
 import {AudioVideoCallService} from "../../service/audio-video-call.service";
 import {UserService} from "../../service/user.service";
+import {User} from "../../model/user.model";
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
+import {UserGroupCreateDialog} from "../user/user-group-create/user-group-create.component";
 
 @Component({
   selector: 'app-audio-video-call',
@@ -10,14 +13,14 @@ import {UserService} from "../../service/user.service";
   styleUrls: ['./audio-video-call.component.css']
 })
 export class AudioVideoCallComponent implements OnInit, OnChanges {
-  @ViewChild('remoteVideo') remoteVideo!: ElementRef;
   @Input() selectedRecipient?: any;
   userIds: number[] = [];
+  @ViewChild('remoteVideo') remoteVideo!: ElementRef;
 
   constructor(
     private webSocketService: WebsocketService,
     private audioVideoCallService: AudioVideoCallService,
-    private userService: UserService
+    private userService: UserService,
   ) {
   }
 
@@ -38,7 +41,6 @@ export class AudioVideoCallComponent implements OnInit, OnChanges {
   }
 
   async makeCall() {
-    console.log(this.userIds)
     await this.audioVideoCallService.makeCall(this.remoteVideo, this.userIds);
   }
 
