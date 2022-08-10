@@ -5,7 +5,7 @@ import {Comment} from "./comment.model";
 
 export interface WebSocketMessage {
   type: string,
-  payload: Message | number | MessageGroup | RTCSessionDescriptionInit | RTCIceCandidate | Event | Comment
+  payload: Message | number | MessageGroup | RTCSessionDescriptionInit | RTCIceCandidate | Event | Comment | string
   recipientIds: number[]|undefined;
   senderId: number|undefined;
 }

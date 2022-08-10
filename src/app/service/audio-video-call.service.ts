@@ -1,7 +1,6 @@
 import {ElementRef, Injectable} from '@angular/core';
 import {WebsocketService} from "./websocket.service";
 import {AuthenticationService} from "./authentication.service";
-import {WebSocketMessage} from "../model/web-socket-message.model";
 
 @Injectable({
   providedIn: 'root',
@@ -36,6 +35,13 @@ export class AudioVideoCallService {
     this.websocketService.sendMessage({type: 'OFFER', payload: offer,recipientIds:selectedRecipient,senderId: this.authService.getAuthenticatedUserID()});
   }
 
+  public async declineCall(callerId: number[]): Promise<void>{
+    this.websocketService.sendMessage(    {type:"END_CALL",payload:"Call declined",recipientIds:callerId,senderId:this.authService.getAuthenticatedUserID()});
+    //if(this.connection) {this.connection.close();
+    // @ts-ignore
+    //  delete this.connection}
+  }
+
   public async handleOffer(offer: RTCSessionDescriptionInit, remoteVideo: ElementRef, selectedRecipient: any): Promise<void> {
     await this.initConnection(remoteVideo, selectedRecipient);
     await this.connection.setRemoteDescription(new RTCSessionDescription(offer));
@@ -46,7 +52,7 @@ export class AudioVideoCallService {
     this.websocketService.sendMessage(message);
   }
 
-  async handleAnswer(answer: RTCSessionDescriptionInit, selectedRecipient: any) {
+  async handleAnswer(answer: RTCSessionDescriptionInit) {
     await this.connection.setRemoteDescription(new RTCSessionDescription(answer));
   }
 
