@@ -4,6 +4,8 @@ import {MessageGroup} from "../../model/message-groups.model";
 import {WebsocketService} from "../../service/websocket.service";
 import {WebSocketMessage} from "../../model/web-socket-message.model";
 import {Event} from "../../model/event.model";
+import {AuthenticationService} from "../../service/authentication.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-home',
@@ -16,7 +18,9 @@ export class HomeComponent {
   selectedEvent?: Event;
 
   constructor(
-    private webSocketService: WebsocketService
+    private webSocketService: WebsocketService,
+    public authenticationService: AuthenticationService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {}
@@ -24,5 +28,10 @@ export class HomeComponent {
   sendMessage(event: WebSocketMessage) {
     console.log(event);
     this.webSocketService.sendMessage(event);
+  }
+
+  logout() {
+    this.authenticationService.logout();
+    this.router.navigate(['/login']).then();
   }
 }

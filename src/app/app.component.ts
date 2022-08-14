@@ -1,6 +1,4 @@
 import {Component} from '@angular/core';
-import {AuthenticationService} from "./service/authentication.service";
-import {Router} from "@angular/router";
 import {environment} from "../environments/environment";
 
 @Component({
@@ -12,8 +10,6 @@ export class AppComponent {
   title = 'Zavrsni Rad App';
 
   constructor(
-    public authenticationService: AuthenticationService,
-    private router: Router,
   ) {
   }
 
@@ -24,10 +20,4 @@ export class AppComponent {
       }
     }
   }
-
-  logout() {
-    this.authenticationService.logout();
-    this.router.navigate(['/login']).then();
-  }
-
 }
