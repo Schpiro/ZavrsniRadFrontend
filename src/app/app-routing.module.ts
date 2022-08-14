@@ -11,6 +11,11 @@ import {HomeComponent} from "./component/home/home.component";
 
 const routes: Routes = [
   {
+    path: '',
+    component: HomeComponent,
+    canActivate: [LoggedInGuard]
+  },
+  {
     path: 'home',
     component: HomeComponent,
     canActivate: [LoggedInGuard]
