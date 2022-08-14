@@ -1,8 +1,7 @@
-<app-audio-video-call [selectedRecipient]="selectedRecipient"></app-audio-video-call>
 <div>
   <div>
       <div>
-        <input class="col-lg-11" (keyup.enter)="sendMessage(Message.value);Message.value='';" #Message />
+        <input class="col-lg-12" (keyup.enter)="sendMessage(Message.value);Message.value='';" #Message />
         <button (click)="sendMessage(Message.value);Message.value='';">
           Send
         </button>

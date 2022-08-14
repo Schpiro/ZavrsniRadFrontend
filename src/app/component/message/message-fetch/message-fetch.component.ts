@@ -12,6 +12,7 @@ import {AuthenticationService} from "../../../service/authentication.service";
 })
 export class MessageFetchComponent implements OnInit, OnChanges {
   @Input() selectedRecipient?: any;
+
   message?: Message[];
 
   constructor(

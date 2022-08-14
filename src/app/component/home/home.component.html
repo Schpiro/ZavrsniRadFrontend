@@ -6,6 +6,8 @@
   </symbol>
 </svg>
 <main class="d-flex flex-nowrap">
+
+  <!--Sidebar -->
   <div class="d-flex flex-column flex-shrink-0 bg-light" style="width: 4.5rem;">
     <a href="/" class="d-block p-3 link-dark text-decoration-none" title="Icon-only" data-bs-toggle="tooltip"
        data-bs-placement="right">
@@ -15,10 +17,12 @@
       <span class="visually-hidden">Icon-only</span>
     </a>
 
+    <!--Sidebar top user select-->
     <div *ngIf="messages">
       <app-user-group-single-select (newItemEvent)="selectedRecipient=$event"></app-user-group-single-select>
     </div>
 
+    <!--Sidebar bottom-->
     <div class="nav nav-pills nav-flush flex-column mt-auto align-items-center mb-2 navbar-buttons">
       <div>
         <app-user-group-create *ngIf="messages" (webSocketMessage)="sendMessage($event)"></app-user-group-create>
@@ -28,9 +32,8 @@
       <div>
         <button (click)="messages=!messages" class="btn btn-primary my-1">
           <i *ngIf="!messages" class="bi bi-chat-dots-fill"></i>
-            <i *ngIf="messages" class="bi bi-calendar-date-fill">
-
-            </i></button>
+          <i *ngIf="messages" class="bi bi-calendar-date-fill"></i>
+        </button>
       </div>
 
       <div>
@@ -38,34 +41,16 @@
       </div>
     </div>
   </div>
-  <div *ngIf="messages&&selectedRecipient!=undefined" class="col-lg-11">
+
+  <!--Main message-->
+  <div *ngIf="messages&&selectedRecipient!=undefined">
     <app-message-fetch [selectedRecipient]="selectedRecipient"></app-message-fetch>
-    <app-message-send [selectedRecipient]="selectedRecipient"
-                      (webSocketMessage)="sendMessage($event)"></app-message-send>
+    <app-message-send [selectedRecipient]="selectedRecipient" (webSocketMessage)="sendMessage($event)"></app-message-send>
   </div>
 
-
-  <div *ngIf="!messages" class="col-lg-11">
+  <!--Main event-->
+  <div *ngIf="!messages">
     <app-event></app-event>
   </div>
+
 </main>
-
-
-<!--
-    <div class="dropdown border-top">
-      <a href="#"
-         class="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none dropdown-toggle"
-         data-bs-toggle="dropdown" aria-expanded="false">
-        <img src="https://github.com/mdo.png" alt="mdo" width="24" height="24" class="rounded-circle">
-      </a>
-      <ul class="dropdown-menu text-small shadow">
-        <li><a class="dropdown-item" href="#">New project...</a></li>
-        <li><a class="dropdown-item" href="#">Settings</a></li>
-        <li><a class="dropdown-item" href="#">Profile</a></li>
-        <li>
-          <hr class="dropdown-divider">
-        </li>
-        <li><a class="dropdown-item" href="#">Sign out</a></li>
-      </ul>
-    </div>
--->
