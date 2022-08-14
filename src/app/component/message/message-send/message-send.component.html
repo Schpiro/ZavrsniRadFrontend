@@ -1,10 +1,4 @@
-<div>
-  <div>
-      <div>
-        <input class="col-lg-12" (keyup.enter)="sendMessage(Message.value);Message.value='';" #Message />
-        <button (click)="sendMessage(Message.value);Message.value='';">
-          Send
-        </button>
-      </div>
-  </div>
-</div>
+<input (keyup.enter)="sendMessage(Message.value);Message.value='';" #Message/>
+<button (click)="sendMessage(Message.value);Message.value='';">
+  Send
+</button>

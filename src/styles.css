@@ -79,3 +79,17 @@ body { margin: 0; font-family: LatoRegular, "Helvetica Neue", sans-serif !import
   background-color: #0092E0;
 }
 
+.main-content-area{
+  margin: auto auto;
+  width: 80%;
+  height: 90%;
+  padding: 15px;
+}
+.main-content-area card-body {
+  height: 100%;
+}
+
+
+main{
+  background-color: #0077B6;
+}

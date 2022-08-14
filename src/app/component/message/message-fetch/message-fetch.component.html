@@ -1,6 +1,7 @@
-<div class="col-lg-12">{{getNameOfRecipient()}}</div>
+<div  class="align-self-start">{{getNameOfRecipient()}}
 <app-audio-video-call [selectedRecipient]="selectedRecipient"></app-audio-video-call>
-<ul class="message">
+</div>
+<ul class="message align-self-stretch">
   <li *ngFor="let message of message">
     <div [ngStyle]="{'color':thisUsersMessage(message.creatorId)?'blue':'red'}">{{message.creator}} - {{message.messageBody}} - {{message.creationDate}}</div>
   </li>
