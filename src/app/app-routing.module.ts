@@ -7,7 +7,6 @@ import {PageNotFoundComponent} from "./component/page-not-found/page-not-found.c
 import { EventComponent } from './component/event/event.component';
 import { MessageComponent } from './component/message/message.component';
 import {RegisterComponent} from "./component/register/register.component";
-import {AppComponent} from "./app.component";
 import {HomeComponent} from "./component/home/home.component";
 
 const routes: Routes = [

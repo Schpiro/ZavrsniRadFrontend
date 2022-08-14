@@ -1,7 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {User} from "../../../model/user.model";
 import {MessageGroup} from "../../../model/message-groups.model";
-import {Message} from "../../../model/message.model";
 import {MessageService} from "../../../service/message.service";
 import {UserService} from "../../../service/user.service";
 import {WebsocketService} from "../../../service/websocket.service";
@@ -12,9 +11,8 @@ import {AuthenticationService} from "../../../service/authentication.service";
   templateUrl: './user-group-single-select.component.html',
   styleUrls: ['./user-group-single-select.component.css']
 })
-export class UserGroupSingleSelectComponent implements OnInit {
+export class UserGroupSingleSelectComponent implements OnInit{
   @Output() newItemEvent = new EventEmitter<User|MessageGroup>();
-  message?: Message[];
   users?: User[];
   messageGroups?: MessageGroup[];
 

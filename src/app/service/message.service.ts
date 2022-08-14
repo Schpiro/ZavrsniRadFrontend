@@ -19,7 +19,7 @@ export class MessageService {
   getMessages(): Observable<Message[]> {
     return this.http.get<Message[]>(this.messagesUrl)
       .pipe(
-        tap(_ => console.log('fetched Messages')),
+        tap(_ => console.log('fetched Messages',_)),
         catchError(this.handleError<Message[]>('getMessages', []))
       );
   }
