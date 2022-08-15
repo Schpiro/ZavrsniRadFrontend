@@ -1,13 +1,12 @@
-<ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
+<ul class="nav nav-pills nav-flush flex-column mb-auto text-center overflow-scroll">
+  <li *ngFor="let user of users" (click)="setRecipient(user)" class="nav-item">
+    <a  class="nav-link py-3 border-bottom rounded-0" aria-current="page" title="{{user.username}}"
+        data-bs-toggle="tooltip" data-bs-placement="right">{{user.username[0]}}
+    </a>
+  </li>
   <li *ngFor="let group of messageGroups" (click)="setRecipient(group)" class="nav-item">
     <a  class="nav-link py-3 border-bottom rounded-0" aria-current="page" title="{{group.groupName}}"
        data-bs-toggle="tooltip" data-bs-placement="right">{{group.groupName[0]}}
-    </a>
-  </li>
-
-  <li *ngFor="let user of users" (click)="setRecipient(user)" class="nav-item">
-    <a  class="nav-link py-3 border-bottom rounded-0" aria-current="page" title="{{user.username}}"
-       data-bs-toggle="tooltip" data-bs-placement="right">{{user.username[0]}}
     </a>
   </li>
 </ul>

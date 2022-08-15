@@ -56,6 +56,19 @@ body { margin: 0; font-family: LatoRegular, "Helvetica Neue", sans-serif !import
 .btn-primary:hover{
   background-color: #0092E0;
 }
+
+.btn-secondary{
+  background-color: #F8F7F2;
+  border-color: #340000FF;
+  color: darkred;
+}
+
+.btn-secondary:hover{
+  background-color: darkred;
+  border-color: #340000FF;
+  color: #F8F7F2;
+}
+
 .card{
   border-color: #D7D8FE;
 }
@@ -243,7 +256,7 @@ ul{
 }
 
 .comment-input{
-  width: calc(100% - 92px);
+  width: calc(100% - 94px);
   border: none;
   border-bottom: 1px solid #030663;
   box-sizing: border-box;

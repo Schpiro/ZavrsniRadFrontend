@@ -1,6 +1,6 @@
 <div style="height: 10%; width: 100%;" class="titles">
-  <span class="me-auto" style="display: inline-block">{{getNameOfRecipient()}} <img [src]="displayImage()"/></span>
-  <div class="ms-auto" style="width: 42px; display:block;"><app-audio-video-call [selectedRecipient]="selectedRecipient"></app-audio-video-call></div>
+  <span style="display: inline-block; vertical-align: text-bottom" class="titles">{{getNameOfRecipient()}} <img [src]="displayImage()"/></span>
+  <div style="float: right;width: 42px; display:block;"><app-audio-video-call [selectedRecipient]="selectedRecipient"></app-audio-video-call></div>
 </div>
 <div style="height: 85%; width: 100%; min-height: 85%">
   <ul class="overflow-scroll" style="max-height: 100%" #messageArea [scrollTop]="messageArea.scrollHeight">

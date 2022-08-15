@@ -79,6 +79,7 @@ export class AudioVideoCallDialog implements OnInit, AfterViewInit {
   @ViewChild('remoteVideo') remoteVideo!: ElementRef;
   selectedRecipientId!: number[];
   incomingCall: boolean = true;
+  errorMessage?: string;
 
   constructor(@Inject(MAT_DIALOG_DATA)
               public data: { selectedRecipient: User | MessageGroup, offer: WebSocketMessage },
@@ -111,7 +112,7 @@ export class AudioVideoCallDialog implements OnInit, AfterViewInit {
   async handleMessage(webSocketMessage: WebSocketMessage): Promise<void> {
     if (webSocketMessage.type === "ANSWER") await this.audioVideoCallService.handleAnswer(<RTCSessionDescriptionInit>webSocketMessage.payload);
     if (webSocketMessage.type === "ICE_CANDIDATE") await this.audioVideoCallService.handleIceCandidate(<RTCIceCandidate>webSocketMessage.payload);
-    if (webSocketMessage.type === "END_CALL") this.closeDialog();
+    if (webSocketMessage.type === "END_CALL") this.errorMessage = <string>webSocketMessage.payload;
   }
 
   closeDialog() {

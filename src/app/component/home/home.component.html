@@ -9,21 +9,22 @@
 
   <!--Sidebar -->
   <div class="d-flex flex-column flex-shrink-0 bg-light" style="width: 4.5rem;">
-    <a href="/" class="d-block p-3 link-dark text-decoration-none" title="Icon-only" data-bs-toggle="tooltip"
-       data-bs-placement="right">
-      <svg class="bi pe-none" width="40" height="32">
-        <use xlink:href="#bootstrap"/>
-      </svg>
-      <span class="visually-hidden">Icon-only</span>
-    </a>
-
+    <div style="border-bottom: 1px solid #030663">
+      <a href="/" class="d-block p-3 link-dark text-decoration-none" title="Icon-only" data-bs-toggle="tooltip"
+         data-bs-placement="right">
+        <svg class="bi pe-none" width="40" height="32">
+          <use xlink:href="#bootstrap"/>
+        </svg>
+        <span class="visually-hidden">Icon-only</span>
+      </a>
+    </div>
     <!--Sidebar top user select-->
-    <div *ngIf="messages">
+    <div *ngIf="messages" class="overflow-scroll">
       <app-user-group-single-select (newItemEvent)="selectedRecipient=$event"></app-user-group-single-select>
     </div>
 
     <!--Sidebar bottom-->
-    <div class="nav nav-pills nav-flush flex-column mt-auto align-items-center mb-2 navbar-buttons">
+    <div style="border-top: 1px solid #030663" class="nav nav-pills nav-flush flex-column mt-auto align-items-center mb-2 pt-2 navbar-buttons">
       <div>
         <app-user-group-create *ngIf="messages" (webSocketMessage)="sendMessage($event)"></app-user-group-create>
         <app-event-create *ngIf="!messages" (webSocketMessage)="sendMessage($event)"></app-event-create>
