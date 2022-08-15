@@ -93,3 +93,57 @@ body { margin: 0; font-family: LatoRegular, "Helvetica Neue", sans-serif !import
 main{
   background-color: #0077B6;
 }
+
+::-webkit-scrollbar{
+  display: none;
+}
+
+ul{
+  list-style-type: none;
+}
+
+.message{
+  width: fit-content;
+  max-width: 80%;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 10px;
+}
+
+.incoming-message{
+  border: 1px solid #26C3E3;
+  background-color: #CAF0F8;
+  margin-right: auto !important;
+}
+
+.outgoing-message{
+  margin-left: auto !important;
+  border: 1px solid #00778F;
+  background-color: #00B4D8;
+  color: white;
+}
+
+#MessageInputField{
+  width: calc(100% - 70px);
+  border: 2px solid #D7D8FE;
+  box-sizing: border-box;
+  border-radius: 0.25rem;
+}
+
+.titles{
+  color: #369;
+  font-family: NotoSerifBold, Helvetica !important;
+  font-size: 1.5rem;
+}
+
+:focus {
+  outline: 0;
+}
+
+.event-create-input{
+  margin: 15px 0;
+}
+
+.mat-form-field-infix {
+  border: none;
+}

@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {MessageGroup} from "../../../model/message-groups.model";
 import {User} from "../../../model/user.model";
 import {WebSocketMessage} from "../../../model/web-socket-message.model";
@@ -55,7 +55,7 @@ export class UserGroupCreateComponent implements OnInit {
 @Component({
   templateUrl: 'user-group-create.dialog.html',
 })
-export class UserGroupCreateDialog {
+export class UserGroupCreateDialog implements OnChanges{
   @Input() users: User[] = [];
 
   constructor(public dialogRef: MatDialogRef<UserGroupCreateDialog>) {}
@@ -72,8 +72,13 @@ export class UserGroupCreateDialog {
     });
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    console.log(changes)
+  }
+
   doAction(name: string) {
     if (name != undefined && this.users.length != 0) {
+      console.log(this.users)
       this.dialogRef.close({action: "CREATE", data: this.users, name: name});
     } else {
       this.doCancel()

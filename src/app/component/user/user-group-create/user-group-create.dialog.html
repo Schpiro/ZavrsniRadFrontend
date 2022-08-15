@@ -3,14 +3,14 @@
   <div>
     <label>Name:
       <div>
-        <input #Name />
+        <input #Name/>
       </div>
     </label>
   </div>
-  <div>
+  <div style="overflow: scroll; height: 200px;" class="mt-2 mb-2">
     <app-user-multiple-select (newItemEvent)="this.users=$event"></app-user-multiple-select>
   </div>
-  <button (click)="doAction(Name.value)">
+  <button class="btn btn-primary" (click)="doAction(Name.value)" style="width: 100%;">
     Create group
   </button>
 </div>

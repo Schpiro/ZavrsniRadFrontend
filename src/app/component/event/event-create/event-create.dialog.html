@@ -1,14 +1,14 @@
 <h1 mat-dialog-title>Create event:</h1>
 <div mat-dialog-content>
   <div>
-    <div>
-      <label>Name:
-        <div>
-          <input #Name/>
+    <div class="event-create-input w-100">
+      <label class="w-100">Name:
+        <div class="w-100">
+          <input class="w-100" #Name/>
         </div>
       </label>
     </div>
-    <div>
+    <div class="event-create-input">
       <label>Time:
         <div>
           <mat-form-field>
@@ -17,21 +17,21 @@
         </div>
       </label>
     </div>
-    <div>
-      <label>Location:
-        <div>
-          <input #Location/>
+    <div class="event-create-input w-100">
+      <label class="w-100">Location:
+        <div class="w-100">
+          <input class="w-100" #Location/>
         </div>
       </label>
     </div>
-    <div>
-      <label>Details:
-        <div>
-          <input #Details/>
+    <div class="event-create-input w-100">
+      <label class="w-100">Details:
+        <div class="w-100">
+          <textarea class="w-100" #Details></textarea>
         </div>
       </label>
     </div>
-    <button (click)="createButtonAction(Name.value, Time.value, Location.value, Details.value)">
+    <button class="btn btn-primary" style="width: 100%" (click)="createButtonAction(Name.value, Time.value, Location.value, Details.value)">
       Create event
     </button>
   </div>

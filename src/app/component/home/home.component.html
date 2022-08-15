@@ -44,9 +44,8 @@
 
   <!--Main message-->
   <div *ngIf="messages&&selectedRecipient!=undefined" class="main-content-area card">
-    <div class="card-body d-flex flex-column">
-        <app-message-fetch [selectedRecipient]="selectedRecipient"></app-message-fetch>
-        <app-message-send [selectedRecipient]="selectedRecipient" (webSocketMessage)="sendMessage($event)"></app-message-send>
+    <div class="card-body h-100">
+        <app-message-fetch [selectedRecipient]="selectedRecipient" (webSocketMessage)="sendMessage($event)" class="d-flex flex-column align-items-start h-100"></app-message-fetch>
     </div>
   </div>
 

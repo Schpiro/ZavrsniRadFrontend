@@ -1,5 +1,9 @@
-<ul class="users">
-  <li *ngFor="let userSelect of users">
-    <mat-checkbox (click)="setRecipient()" [(ngModel)]="userSelect.isSelected">{{userSelect.user.username}}</mat-checkbox>
-  </li>
-</ul>
+<div class="form-check" *ngFor="let userSelect of users">
+  <div class="ms-2">
+    <input [(ngModel)]="userSelect.isSelected" class="form-check-input" type="checkbox" value="{{userSelect.user.id}}"
+           name="{{userSelect.user.username}}" id="{{userSelect.user.username}}" (click)="setRecipient()">
+    <label style="vertical-align: middle; display: inline" class="form-check-label" for="{{userSelect.user.username}}">
+      {{userSelect.user.username}}
+    </label>
+  </div>
+</div>

@@ -13,7 +13,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  messages: boolean = true;
+  messages: boolean = false;
   selectedRecipient?: User | MessageGroup;
   selectedEvent?: Event;
 

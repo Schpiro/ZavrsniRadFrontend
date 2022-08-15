@@ -1,8 +1,14 @@
-<div  class="align-self-start">{{getNameOfRecipient()}}
-<app-audio-video-call [selectedRecipient]="selectedRecipient"></app-audio-video-call>
+<div style="height: 10%; width: 100%;" class="titles">
+  <span class="me-auto" style="display: inline-block">{{getNameOfRecipient()}}</span>
+  <div class="ms-auto" style="width: 42px; display:block;"><app-audio-video-call [selectedRecipient]="selectedRecipient"></app-audio-video-call></div>
 </div>
-<ul class="message align-self-stretch">
-  <li *ngFor="let message of message">
-    <div [ngStyle]="{'color':thisUsersMessage(message.creatorId)?'blue':'red'}">{{message.creator}} - {{message.messageBody}} - {{message.creationDate}}</div>
-  </li>
-</ul>
+<div style="height: 85%; width: 100%; min-height: 85%">
+  <ul class="overflow-scroll" style="max-height: 100%" #messageArea [scrollTop]="messageArea.scrollHeight">
+    <li *ngFor="let message of message" [ngClass]="thisUsersMessage(message.creatorId)?'outgoing-message message':'incoming-message message'">
+      <div >{{message.creator}} - {{message.messageBody}} - {{message.creationDate}}</div>
+    </li>
+  </ul>
+</div>
+<div class="w-100" style="height: 5%; width: 100%;">
+  <app-message-send [selectedRecipient]="selectedRecipient" (webSocketMessage)="sendMessage($event)" ></app-message-send>
+</div>

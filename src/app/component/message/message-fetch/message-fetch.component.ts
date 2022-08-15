@@ -1,4 +1,14 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+  ViewChild
+} from '@angular/core';
 import {Message} from "../../../model/message.model";
 import {MessageService} from "../../../service/message.service";
 import {WebsocketService} from "../../../service/websocket.service";
@@ -12,6 +22,8 @@ import {AuthenticationService} from "../../../service/authentication.service";
 })
 export class MessageFetchComponent implements OnInit, OnChanges {
   @Input() selectedRecipient?: any;
+  @Output() webSocketMessage = new EventEmitter<WebSocketMessage>();
+  @ViewChild('messageArea') messageArea!: ElementRef;
 
   message?: Message[];
 
@@ -60,6 +72,7 @@ export class MessageFetchComponent implements OnInit, OnChanges {
         this.message?.push(message);
       }
     }
+    setTimeout(() => this.messageArea.nativeElement.scrollTop = this.messageArea.nativeElement.scrollHeight)
   }
 
   notification(){
@@ -83,5 +96,10 @@ export class MessageFetchComponent implements OnInit, OnChanges {
 
   thisUsersMessage(id: any): boolean {
     return id == this.authService.getAuthenticatedUserID();
+  }
+
+  sendMessage($event: WebSocketMessage) {
+    console.log("hey")
+    this.webSocketMessage.emit($event)
   }
 }

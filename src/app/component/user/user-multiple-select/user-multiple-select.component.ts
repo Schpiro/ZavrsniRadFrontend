@@ -12,6 +12,7 @@ import {AuthenticationService} from "../../../service/authentication.service";
 export class UserMultipleSelectComponent implements OnInit {
   @Output() newItemEvent = new EventEmitter<User[]>();
   users: UserSelect[] = [];
+  user: User[] = [];
 
   constructor(
     private userService: UserService,
@@ -32,12 +33,13 @@ export class UserMultipleSelectComponent implements OnInit {
   }
 
   mapUserSelectToUser(users:UserSelect[]): User[]{
-    return users.map((x) => {
+    return users.filter((x)=>x.isSelected).map((x) => {
       return x.user
     });
   }
 
   setRecipient() {
-    this.newItemEvent.emit(this.mapUserSelectToUser(this.users));
+    let users = this.mapUserSelectToUser(this.users);
+    this.newItemEvent.emit(users)
   }
 }

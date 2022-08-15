@@ -1,4 +1,7 @@
-<input (keyup.enter)="sendMessage(Message.value);Message.value='';" #Message/>
-<button (click)="sendMessage(Message.value);Message.value='';">
-  Send
-</button>
+<div class="input-group mb-3">
+  <input (keyup.enter)="sendMessage(MessageInputField.value);MessageInputField.value='';" #MessageInputField
+         id="MessageInputField"/>
+  <button class="btn btn-primary" style="border: 2px solid #030663; box-sizing: border-box; width: 70px"
+          (click)="sendMessage(MessageInputField.value);MessageInputField.value='';"><i class="bi bi-send-fill"></i>
+  </button>
+</div>
