@@ -34,7 +34,7 @@ export class CommentCreateComponent implements OnInit {
     this.eventService.createComment(comment,<number>this.event.id).subscribe(res => {
       console.log(res);
       comment.id = res.id;
-      this.webSocketMessage.emit({type: "NEW_COMMENT", payload: comment, recipientIds: undefined, senderId: undefined});
+      this.webSocketMessage.emit({type: "NEW_COMMENT", payload: comment, recipientIds: undefined, senderId: undefined,senderName:undefined});
     }
   );
   }

@@ -46,7 +46,8 @@ export class UserGroupCreateComponent implements OnInit {
         type: "NEW_GROUP",
         payload: messageGroup,
         recipientIds: undefined,
-        senderId: undefined
+        senderId: undefined,
+        senderName: undefined
       });
     })
   }

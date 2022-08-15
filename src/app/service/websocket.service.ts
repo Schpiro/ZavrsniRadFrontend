@@ -26,12 +26,13 @@ export class WebsocketService {
   }
 
   public sendMessage(webSocketMessage: WebSocketMessage) {
+    console.log(webSocketMessage)
     this.socket.send(JSON.stringify(webSocketMessage));
   }
 
   private createWsConnection(): WebSocket{
     let socket = new WebSocket(url);
-    socket.onopen = () => this.sendMessage({type:"CLIENT_ID", payload:this.authenticationService.getAuthenticatedUserID(),recipientIds:undefined,senderId: undefined});
+    socket.onopen = () => this.sendMessage({type:"CLIENT_ID", payload:this.authenticationService.getAuthenticatedUserID(),recipientIds:undefined,senderId: undefined,senderName: undefined});
     socket.onmessage = (ev: MessageEvent) => {
       this.webSocketMessage.emit(JSON.parse(ev.data));
     };

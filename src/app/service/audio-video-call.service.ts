@@ -32,11 +32,11 @@ export class AudioVideoCallService {
     await this.initConnection(remoteVideo, selectedRecipient);
     const offer = await this.connection.createOffer();
     await this.connection.setLocalDescription(offer);
-    this.websocketService.sendMessage({type: 'OFFER', payload: offer,recipientIds:selectedRecipient,senderId: this.authService.getAuthenticatedUserID()});
+    this.websocketService.sendMessage({type: 'OFFER', payload: offer,recipientIds:selectedRecipient,senderId: this.authService.getAuthenticatedUserID(),senderName:this.authService.getAuthenticatedUserUsername()});
   }
 
   public async declineCall(callerId: number[], ended: boolean): Promise<void>{
-    this.websocketService.sendMessage(    {type:"END_CALL",payload:ended?"Call ended":"Call declined",recipientIds:callerId,senderId:this.authService.getAuthenticatedUserID()});
+    this.websocketService.sendMessage(    {type:"END_CALL",payload:ended?"Call ended":"Call declined",recipientIds:callerId,senderId:this.authService.getAuthenticatedUserID(),senderName:this.authService.getAuthenticatedUserUsername()});
     if(this.connection) {this.connection.close();
      // @ts-ignore
       this.connection = null
@@ -50,7 +50,7 @@ export class AudioVideoCallService {
     await this.connection.setRemoteDescription(new RTCSessionDescription(offer));
     const answer = await this.connection.createAnswer();
     await this.connection.setLocalDescription(answer);
-    let message = {type: 'ANSWER', payload: answer,recipientIds:selectedRecipient,senderId: this.authService.getAuthenticatedUserID()}
+    let message = {type: 'ANSWER', payload: answer,recipientIds:selectedRecipient,senderId: this.authService.getAuthenticatedUserID(),senderName:this.authService.getAuthenticatedUserUsername()}
     console.log(message)
     this.websocketService.sendMessage(message);
   }
@@ -88,7 +88,7 @@ export class AudioVideoCallService {
   private async registerConnectionListeners(selectedRecipient: any) {
     this.connection.onicecandidate = (event) => {
       if (event.candidate) {
-        this.websocketService.sendMessage({type: "ICE_CANDIDATE", payload: event.candidate,recipientIds:selectedRecipient,senderId: this.authService.getAuthenticatedUserID()});
+        this.websocketService.sendMessage({type: "ICE_CANDIDATE", payload: event.candidate,recipientIds:selectedRecipient,senderId: this.authService.getAuthenticatedUserID(),senderName: this.authService.getAuthenticatedUserUsername()});
       }
     };
   }

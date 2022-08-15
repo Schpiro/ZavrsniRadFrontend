@@ -8,4 +8,5 @@ export interface WebSocketMessage {
   payload: Message | number | MessageGroup | RTCSessionDescriptionInit | RTCIceCandidate | Event | Comment | string
   recipientIds: number[]|undefined;
   senderId: number|undefined;
+  senderName: string|undefined;
 }

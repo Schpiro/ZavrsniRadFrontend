@@ -40,7 +40,7 @@ export class EventCreateComponent implements OnInit {
 
     this.eventService.createEvent(event).subscribe(res => {console.log(res)
       event.id = res.id
-      this.webSocketMessage.emit({type:"NEW_EVENT",payload:event,recipientIds:undefined,senderId: undefined})
+      this.webSocketMessage.emit({type:"NEW_EVENT",payload:event,recipientIds:undefined,senderId: undefined,senderName:undefined})
     })
 
   }
