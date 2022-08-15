@@ -1,6 +1,22 @@
-<ul class="events">
-  <li *ngFor="let event of events" (click)="selectedEvent=event">
-      {{event.creator}} - {{event.details}}
-      <app-event-details *ngIf="selectedEvent===event" [event]="selectedEvent!" (webSocketMessage)="sendMessage($event)"></app-event-details>
-  </li>
-</ul>
+<div style="height: 100%">
+  <ul class="overflow-scroll" style="max-height: 100%">
+    <li *ngFor="let event of events" class="event-box shadow-sm">
+      <div class="event-item">
+      <div (click)="selectedEvent!=event?selectedEvent=event:selectedEvent=undefined">
+        <h2>{{event.title}}</h2>
+        <div>
+          <span class="event-date-location"><i class="bi bi-geo-alt-fill"></i> {{event.location}}</span>
+          <span class="event-date-location"><i class="bi bi-calendar-date-fill"></i> {{event.date}}</span>
+        </div>
+        <div style="color: #6C7C89">Created by: {{event.creator}}</div>
+      </div>
+      <app-event-details *ngIf="selectedEvent===event" [event]="selectedEvent!"
+                         (webSocketMessage)="sendMessage($event)"></app-event-details>
+      </div>
+      <div class="expand-close" (click)="selectedEvent!=event?selectedEvent=event:selectedEvent=undefined">
+        <div *ngIf="selectedEvent!=event">Expand</div>
+        <div *ngIf="selectedEvent==event">Close</div>
+      </div>
+    </li>
+  </ul>
+</div>

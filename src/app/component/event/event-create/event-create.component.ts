@@ -29,7 +29,8 @@ export class EventCreateComponent implements OnInit {
   createEvent(title: string, time: string, location: string, details: string){
     let event: Event = {
       id:0,
-      creator:this.authService.getAuthenticatedUserID(),
+      creator:this.authService.getAuthenticatedUserUsername(),
+      creatorId:this.authService.getAuthenticatedUserID(),
       date:Date.now().toString(),
       title:title,
       location: location,

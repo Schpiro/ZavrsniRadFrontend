@@ -50,8 +50,11 @@
   </div>
 
   <!--Main event-->
-  <div *ngIf="!messages">
-    <app-event></app-event>
+  <div *ngIf="!messages" class="main-content-area card">
+    <h1 class="ms-4">Events</h1>
+    <div class="card-body h-75">
+      <app-event></app-event>
+    </div>
   </div>
 
 </main>

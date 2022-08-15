@@ -4,6 +4,7 @@ import {Event} from "../../../model/event.model";
 import {Comment} from "../../../model/comment.model";
 import {WebSocketMessage} from "../../../model/web-socket-message.model";
 import {WebsocketService} from "../../../service/websocket.service";
+import {AuthenticationService} from "../../../service/authentication.service";
 
 @Component({
   selector: 'app-event-details',
@@ -19,6 +20,7 @@ export class EventDetailsComponent implements OnInit {
   constructor(
     private eventService: EventService,
     private webSocketService: WebsocketService,
+    private authService: AuthenticationService,
   ) {
   }
 
@@ -44,5 +46,9 @@ export class EventDetailsComponent implements OnInit {
 
   emitEvent(event: WebSocketMessage) {
     this.webSocketMessage.emit(event);
+  }
+
+  thisUsersComment(creator: number): boolean {
+    return (creator == this.authService.getAuthenticatedUserID());
   }
 }

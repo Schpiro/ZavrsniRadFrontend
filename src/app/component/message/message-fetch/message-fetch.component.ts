@@ -102,4 +102,14 @@ export class MessageFetchComponent implements OnInit, OnChanges {
     console.log("hey")
     this.webSocketMessage.emit($event)
   }
+
+  displayImage(): any{
+    let image;
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      image = e.target!.result;
+    };
+     reader.readAsDataURL(new Blob([this.selectedRecipient.image]));
+     return image;
+  }
 }

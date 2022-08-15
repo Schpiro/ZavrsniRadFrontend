@@ -1,6 +1,7 @@
 export interface Event {
   id: number | undefined;
-  creator: number;
+  creator: string;
+  creatorId: number;
   title: string;
   location: string;
   date: string;

@@ -10,7 +10,7 @@ import {WebSocketMessage} from "../../model/web-socket-message.model";
   styleUrls: ['./event.component.css']
 })
 export class EventComponent implements OnInit {
-  @Output() selectedEvent!: Event;
+  @Output() selectedEvent: Event | undefined;
   events?: Event[];
 
   constructor(
