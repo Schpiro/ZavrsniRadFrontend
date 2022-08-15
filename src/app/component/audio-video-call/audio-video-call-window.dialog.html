@@ -1,10 +1,14 @@
 <div mat-dialog-content>
-  <div class="d-flex flex-column mb-3">
-    <video #remoteVideo autoplay></video>
-    <div class="text-center" *ngIf="errorMessage">{{errorMessage}}</div>
+  <div class="d-flex flex-column">
+    <video [ngStyle]="{'display':isShown?'block':'none'}" #remoteVideo autoplay></video>
   </div>
-  <div *ngIf="incomingCall">
-    <button style="width: 45%" class="btn btn-primary" (click)="acceptCall()">Answer</button>
-    <button style="width: 45%; float: right" class="btn btn-secondary" (click)="closeCall()">Decline</button>
+  <div *ngIf="isCalling" >
+    <div class="spinner-border spinner-border-sm"></div>
+    <span>Calling</span>
+  </div>
+  <div class="text-center" *ngIf="errorMessage">{{errorMessage}}</div>
+  <div *ngIf="incomingCall" class="text-center">
+    <button class="btn btn-primary me-1" (click)="acceptCall()">Answer</button>
+    <button class="btn btn-secondary" (click)="closeCall()">Decline</button>
   </div>
 </div>

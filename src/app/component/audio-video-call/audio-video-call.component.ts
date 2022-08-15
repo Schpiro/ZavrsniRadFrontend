@@ -80,6 +80,8 @@ export class AudioVideoCallDialog implements OnInit, AfterViewInit {
   selectedRecipientId!: number[];
   incomingCall: boolean = true;
   errorMessage?: string;
+  isShown: boolean = false;
+  isCalling: boolean = false;
 
   constructor(@Inject(MAT_DIALOG_DATA)
               public data: { selectedRecipient: User | MessageGroup, offer: WebSocketMessage },
@@ -94,25 +96,35 @@ export class AudioVideoCallDialog implements OnInit, AfterViewInit {
     this.selectedRecipientId = [this.data.selectedRecipient.id]
     this.dialogRef.keydownEvents().subscribe(event => {
       if (event.key === "Escape") {
-        this.audioVideoCallService.declineCall(this.selectedRecipientId);
+        this.audioVideoCallService.declineCall(this.selectedRecipientId,true);
         this.closeCall()
       }
     });
     this.dialogRef.backdropClick().subscribe(() => {
+      this.audioVideoCallService.declineCall(this.selectedRecipientId,true);
       this.closeCall()
     });
   }
 
   ngAfterViewInit() {
     if (!this.data.offer){
+      this.isCalling = true;
       this.audioVideoCallService.makeCall(this.remoteVideo, [this.data.selectedRecipient.id]);
     }
   }
 
   async handleMessage(webSocketMessage: WebSocketMessage): Promise<void> {
-    if (webSocketMessage.type === "ANSWER") await this.audioVideoCallService.handleAnswer(<RTCSessionDescriptionInit>webSocketMessage.payload);
+    if (webSocketMessage.type === "ANSWER") {
+      await this.audioVideoCallService.handleAnswer(<RTCSessionDescriptionInit>webSocketMessage.payload);
+      this.isShown = true;
+      this.isCalling=false;
+    }
     if (webSocketMessage.type === "ICE_CANDIDATE") await this.audioVideoCallService.handleIceCandidate(<RTCIceCandidate>webSocketMessage.payload);
-    if (webSocketMessage.type === "END_CALL") this.errorMessage = <string>webSocketMessage.payload;
+    if (webSocketMessage.type === "END_CALL") {
+      this.errorMessage = <string>webSocketMessage.payload;
+      this.isShown = false;
+      this.isCalling = false;
+    }
   }
 
   closeDialog() {
@@ -121,11 +133,12 @@ export class AudioVideoCallDialog implements OnInit, AfterViewInit {
 
   async acceptCall() {
     this.incomingCall = false;
+    this.isShown = true;
     await this.audioVideoCallService.handleOffer(<RTCSessionDescriptionInit>this.data.offer.payload, this.remoteVideo, this.selectedRecipientId);
   }
 
   closeCall() {
-    this.audioVideoCallService.declineCall(this.selectedRecipientId);
+    this.audioVideoCallService.declineCall(this.selectedRecipientId,false);
     this.closeDialog();
   }
 }

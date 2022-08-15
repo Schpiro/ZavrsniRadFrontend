@@ -35,8 +35,8 @@ export class AudioVideoCallService {
     this.websocketService.sendMessage({type: 'OFFER', payload: offer,recipientIds:selectedRecipient,senderId: this.authService.getAuthenticatedUserID()});
   }
 
-  public async declineCall(callerId: number[]): Promise<void>{
-    this.websocketService.sendMessage(    {type:"END_CALL",payload:"Call declined",recipientIds:callerId,senderId:this.authService.getAuthenticatedUserID()});
+  public async declineCall(callerId: number[], ended: boolean): Promise<void>{
+    this.websocketService.sendMessage(    {type:"END_CALL",payload:ended?"Call ended":"Call declined",recipientIds:callerId,senderId:this.authService.getAuthenticatedUserID()});
     if(this.connection) {this.connection.close();
      // @ts-ignore
       this.connection = null
