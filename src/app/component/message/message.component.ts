@@ -17,7 +17,6 @@ export class MessageComponent implements OnInit {
   messageGroups?: MessageGroup[];
 
   constructor(
-    private messageService: MessageService,
     private userService: UserService,
     private webSocketService: WebsocketService
   ) { }

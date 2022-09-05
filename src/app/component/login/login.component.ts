@@ -45,21 +45,4 @@ export class LoginComponent implements OnInit {
         }
       })
   }
-
-  buttonRegisterClick() {
-    this.authenticationError = false;
-    this.authenticating = true;
-
-    this.authenticationService.register(this.login).subscribe(
-      {
-        next: (loginResponse: Jwt) => {
-          this.authenticationService.saveJwtToLocalStorage(loginResponse.jwt);
-          this.router.navigate(['/home']).then();
-        },
-        error: () => {
-          this.authenticationError = true;
-          this.authenticating = false;
-        }
-      })
-  }
 }

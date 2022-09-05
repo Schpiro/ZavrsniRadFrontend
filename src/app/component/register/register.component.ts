@@ -29,23 +29,6 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  buttonLoginClick() {
-    this.authenticationError = false;
-    this.authenticating = true;
-
-    this.authenticationService.login(this.login).subscribe(
-      {
-        next: (loginResponse: Jwt) => {
-          this.authenticationService.saveJwtToLocalStorage(loginResponse.jwt);
-          this.router.navigate(['/home']).then();
-        },
-        error: () => {
-          this.authenticationError = true;
-          this.authenticating = false;
-        }
-      })
-  }
-
   buttonRegisterClick() {
     this.authenticationError = false;
     this.authenticating = true;
