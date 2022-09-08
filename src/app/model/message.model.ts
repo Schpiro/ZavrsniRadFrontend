@@ -6,5 +6,5 @@ export interface Message {
   recipientId: number | undefined;
   recipientGroupId: number | undefined;
   groupParticipantsIds: number[] | undefined;
-  creationDate: string | undefined;
+  creationDate: string;
 }

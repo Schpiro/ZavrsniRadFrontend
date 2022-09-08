@@ -6,7 +6,7 @@
         <h2>{{event.title}}</h2>
         <div>
           <span class="event-date-location"><i class="bi bi-geo-alt-fill"></i> {{event.location}}</span>
-          <span class="event-date-location"><i class="bi bi-calendar-date-fill"></i> {{event.date}}</span>
+          <span class="event-date-location"><i class="bi bi-calendar-date-fill"></i> {{formatDate(event.date)}}</span>
         </div>
         <div style="color: #6C7C89">Created by: {{event.creator}}</div>
       </div>

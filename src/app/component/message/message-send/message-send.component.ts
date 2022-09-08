@@ -33,7 +33,7 @@ export class MessageSendComponent implements OnInit {
       creatorId: this.authenticationService.getAuthenticatedUserID(),
       groupParticipantsIds: undefined,
       parentMessage: undefined,
-      creationDate: Date.now().toString()
+      creationDate: JSON.stringify(new Date().toISOString().slice(0,19))
     }
     console.log(message)
     this.messageService.sendMessage(message).subscribe(res => {

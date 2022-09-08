@@ -63,7 +63,6 @@ export class MessageFetchComponent implements OnInit, OnChanges {
   appendMessage(webSocketMessage: WebSocketMessage): void {
     if (webSocketMessage.type == "NEW_MESSAGE") {
       let message = <Message>webSocketMessage.payload;
-
       if (this.selectedRecipient
           && ((this.selectedRecipient.hasOwnProperty("groupName")
           && message.recipientGroupId === this.selectedRecipient.id)
@@ -111,5 +110,10 @@ export class MessageFetchComponent implements OnInit, OnChanges {
     };
      reader.readAsDataURL(new Blob([this.selectedRecipient.image]));
      return image;
+  }
+
+  formatDate(isoDateString: string): string{
+    let isoDate = new Date(isoDateString);
+    return isoDate.getFullYear() + '-' + isoDate.getMonth() + '-' + isoDate.getDay() + ' ' + isoDate.getHours() + ':' + isoDate.getMinutes() + ':' + isoDate.getSeconds();
   }
 }

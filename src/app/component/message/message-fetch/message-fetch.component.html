@@ -5,7 +5,11 @@
 <div style="height: 85%; width: 100%; min-height: 85%">
   <ul class="overflow-scroll" style="max-height: 100%" #messageArea [scrollTop]="messageArea.scrollHeight">
     <li *ngFor="let message of message" [ngClass]="thisUsersMessage(message.creatorId)?'outgoing-message message':'incoming-message message'">
-      <div >{{message.creator}} - {{message.messageBody}} - {{message.creationDate}}</div>
+      <div title="{{formatDate(message.creationDate)}}">
+        <span>{{message.creator}}</span>
+        <br>
+        <span class="ps-2">{{message.messageBody}}</span>
+      </div>
     </li>
   </ul>
 </div>

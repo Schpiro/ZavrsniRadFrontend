@@ -37,4 +37,9 @@ export class EventComponent implements OnInit {
   appendMessage(webSocketMessage: WebSocketMessage): void {
     if (webSocketMessage.type === "NEW_EVENT") this.events?.push(<Event>webSocketMessage.payload);
   }
+
+  formatDate(isoDateString: string): string{
+    let isoDate = new Date(isoDateString);
+    return isoDate.getFullYear() + '-' + isoDate.getMonth() + '-' + isoDate.getDay() + ' ' + isoDate.getHours() + ':' + isoDate.getMinutes() + ':' + isoDate.getSeconds();
+  }
 }
