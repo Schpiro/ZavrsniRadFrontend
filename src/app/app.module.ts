@@ -11,7 +11,6 @@ import {AuthenticationInterceptor} from "./security/authentication.interceptor";
 import {ForbiddenPageComponent} from "./component/forbidden-page/forbidden-page.component";
 import {PageNotFoundComponent} from "./component/page-not-found/page-not-found.component";
 import { EventComponent } from './component/event/event.component';
-import { MessageComponent } from './component/message/message.component';
 import { MessageFetchComponent } from './component/message/message-fetch/message-fetch.component';
 import {MessageSendComponent} from "./component/message/message-send/message-send.component";
 import {
@@ -43,7 +42,6 @@ import { EventFilterComponent } from './component/event/event-filter/event-filte
     ForbiddenPageComponent,
     PageNotFoundComponent,
     EventComponent,
-    MessageComponent,
     MessageSendComponent,
     MessageFetchComponent,
     UserGroupCreateComponent,
