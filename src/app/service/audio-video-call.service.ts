@@ -51,7 +51,6 @@ export class AudioVideoCallService {
     const answer = await this.connection.createAnswer();
     await this.connection.setLocalDescription(answer);
     let message = {type: 'ANSWER', payload: answer,recipientIds:selectedRecipient,senderId: this.authService.getAuthenticatedUserID(),senderName:this.authService.getAuthenticatedUserUsername()}
-    console.log(message)
     this.websocketService.sendMessage(message);
   }
 

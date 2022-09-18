@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {MessageGroup} from "../../../model/message-groups.model";
 import {User} from "../../../model/user.model";
 import {WebSocketMessage} from "../../../model/web-socket-message.model";
@@ -8,8 +8,7 @@ import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-user-group-create',
-  templateUrl: './user-group-create.component.html',
-  styleUrls: ['./user-group-create.component.css']
+  templateUrl: './user-group-create.component.html'
 })
 export class UserGroupCreateComponent implements OnInit {
   @Output() webSocketMessage = new EventEmitter<WebSocketMessage>();
@@ -40,7 +39,6 @@ export class UserGroupCreateComponent implements OnInit {
       groupParticipants: userIdsNo
     }
     this.userService.createMessageGroup(messageGroup).subscribe(res => {
-      console.log(res);
       messageGroup.id = res.id;
       this.webSocketMessage.emit({
         type: "NEW_GROUP",
@@ -56,7 +54,7 @@ export class UserGroupCreateComponent implements OnInit {
 @Component({
   templateUrl: 'user-group-create.dialog.html',
 })
-export class UserGroupCreateDialog implements OnChanges{
+export class UserGroupCreateDialog{
   @Input() users: User[] = [];
 
   constructor(public dialogRef: MatDialogRef<UserGroupCreateDialog>) {}
@@ -73,13 +71,8 @@ export class UserGroupCreateDialog implements OnChanges{
     });
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    console.log(changes)
-  }
-
   doAction(name: string) {
     if (name != undefined && this.users.length != 0) {
-      console.log(this.users)
       this.dialogRef.close({action: "CREATE", data: this.users, name: name});
     } else {
       this.doCancel()

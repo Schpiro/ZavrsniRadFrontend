@@ -27,7 +27,6 @@ export class HomeComponent {
   ngOnInit(): void {}
 
   sendMessage(event: WebSocketMessage) {
-    console.log(event);
     this.webSocketService.sendMessage(event);
   }
 

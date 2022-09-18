@@ -6,8 +6,7 @@ import {WebSocketMessage} from "../../model/web-socket-message.model";
 
 @Component({
   selector: 'app-event',
-  templateUrl: './event.component.html',
-  styleUrls: ['./event.component.css']
+  templateUrl: './event.component.html'
 })
 export class EventComponent implements OnInit {
   @Output() selectedEvent: Event | undefined;
@@ -32,7 +31,6 @@ export class EventComponent implements OnInit {
   }
 
   sendMessage(event: WebSocketMessage) {
-    console.log(event);
     this.webSocketService.sendMessage(event);
   }
 

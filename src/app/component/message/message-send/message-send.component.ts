@@ -6,8 +6,7 @@ import {AuthenticationService} from "../../../service/authentication.service";
 
 @Component({
   selector: 'app-message-send',
-  templateUrl: './message-send.component.html',
-  styleUrls: ['./message-send.component.css']
+  templateUrl: './message-send.component.html'
 })
 export class MessageSendComponent implements OnInit {
   @Input() selectedRecipient?: any;
@@ -35,9 +34,8 @@ export class MessageSendComponent implements OnInit {
       parentMessage: undefined,
       creationDate: JSON.stringify(new Date().toISOString().slice(0,19))
     }
-    console.log(message)
+
     this.messageService.sendMessage(message).subscribe(res => {
-      console.log(res)
       message.groupParticipantsIds = res.groupParticipantsIds;
       this.webSocketMessage.emit({type:(group?"GROUP_MESSAGE":"PRIVATE_MESSAGE"),payload:message,recipientIds:undefined,senderId: undefined,senderName:undefined})
     })

@@ -8,8 +8,7 @@ import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-event-create',
-  templateUrl: './event-create.component.html',
-  styleUrls: ['./event-create.component.css']
+  templateUrl: './event-create.component.html'
 })
 export class EventCreateComponent implements OnInit {
   @Output() webSocketMessage = new EventEmitter<WebSocketMessage>();
@@ -38,7 +37,7 @@ export class EventCreateComponent implements OnInit {
       creationDate:Date.now().toString()
     }
 
-    this.eventService.createEvent(event).subscribe(res => {console.log(res)
+    this.eventService.createEvent(event).subscribe(res => {
       event.id = res.id
       this.webSocketMessage.emit({type:"NEW_EVENT",payload:event,recipientIds:undefined,senderId: undefined,senderName:undefined})
     })
@@ -70,7 +69,6 @@ export class CreateEventDialog {
   }
 
   createButtonAction() {
-    console.log(this.title,this.time,this.location,this.details)
     if (this.title != undefined) {
       this.dialogRef.close({action: "CREATE", invitedUsers: this.users, title: this.title, time:this.time,location:this.location,details:this.details});
     } else {

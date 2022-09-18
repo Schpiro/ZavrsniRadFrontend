@@ -37,7 +37,6 @@ export class UserService extends BackendBaseService{
 
   createMessageGroup(messageGroup: MessageGroup): Observable<MessageGroup> {
     const url = `${this.userUrl}/groups`;
-    console.log(messageGroup);
     return this.http.post<MessageGroup>(url, messageGroup, this.httpOptions).pipe(
       tap((newMessageGroup: MessageGroup) => console.log(`Successfully created a new group ${newMessageGroup.groupName}!`)),
       catchError(this.handleError<MessageGroup>('createMessageGroup'))

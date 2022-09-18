@@ -19,8 +19,7 @@ import {MessageGroup} from "../../model/message-groups.model";
 
 @Component({
   selector: 'app-audio-video-call',
-  templateUrl: './audio-video-call.component.html',
-  styleUrls: ['./audio-video-call.component.css']
+  templateUrl: './audio-video-call.component.html'
 })
 export class AudioVideoCallComponent implements OnInit, OnChanges {
   @Input() selectedRecipient?: any;

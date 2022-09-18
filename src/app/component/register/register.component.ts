@@ -7,8 +7,7 @@ import { WebsocketService } from '../../service/websocket.service';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  templateUrl: './register.component.html'
 })
 export class RegisterComponent implements OnInit {
 

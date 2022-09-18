@@ -8,14 +8,12 @@ import {AuthenticationService} from "../../../service/authentication.service";
 
 @Component({
   selector: 'app-event-details',
-  templateUrl: './event-details.component.html',
-  styleUrls: ['./event-details.component.css']
+  templateUrl: './event-details.component.html'
 })
 export class EventDetailsComponent implements OnInit {
   @Input() event!: Event;
   @Output() webSocketMessage = new EventEmitter<WebSocketMessage>();
   comments?: Comment[];
-  createCommentShow: boolean = false;
 
   constructor(
     private eventService: EventService,
@@ -27,17 +25,12 @@ export class EventDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.eventService.getEventComments(<number>this.event.id).subscribe(comments => this.comments = comments)
     this.webSocketService.webSocketMessage.subscribe(x => this.appendMessage(x))
-    console.log(this.event);
   }
 
   getParentComments(): Comment[] | undefined {
     return this.comments?.filter(x => {
       return x.parentCommentId == undefined;
     });
-  }
-
-  getChildComments(parentId: number): Comment[] | undefined {
-    return this.comments;
   }
 
   appendMessage(webSocketMessage: WebSocketMessage): void {

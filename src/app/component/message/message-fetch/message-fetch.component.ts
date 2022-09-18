@@ -17,8 +17,7 @@ import {AuthenticationService} from "../../../service/authentication.service";
 
 @Component({
   selector: 'app-message-fetch',
-  templateUrl: './message-fetch.component.html',
-  styleUrls: ['./message-fetch.component.css']
+  templateUrl: './message-fetch.component.html'
 })
 export class MessageFetchComponent implements OnInit, OnChanges {
   @Input() selectedRecipient?: any;
@@ -39,14 +38,12 @@ export class MessageFetchComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    //Trebao bi biti instanceof umjesto ovog scuffed
     if (this.selectedRecipient) {
       if (this.selectedRecipient.hasOwnProperty("groupName")) {
         this.getGroupConversation();
       } else {
         this.getConversation();
       }
-      console.log(this.message)
     }
   }
 
@@ -98,7 +95,6 @@ export class MessageFetchComponent implements OnInit, OnChanges {
   }
 
   sendMessage($event: WebSocketMessage) {
-    console.log("hey")
     this.webSocketMessage.emit($event)
   }
 

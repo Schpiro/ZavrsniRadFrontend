@@ -27,7 +27,6 @@ export class WebsocketService extends BackendBaseService{
   }
 
   public sendMessage(webSocketMessage: WebSocketMessage) {
-    console.log(webSocketMessage)
     this.socket.send(JSON.stringify(webSocketMessage));
   }
 

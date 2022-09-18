@@ -2,8 +2,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-event-filter',
-  templateUrl: './event-filter.component.html',
-  styleUrls: ['./event-filter.component.css']
+  templateUrl: './event-filter.component.html'
 })
 export class EventFilterComponent implements OnInit {
   @Output() filterEvent = new EventEmitter<string>();
