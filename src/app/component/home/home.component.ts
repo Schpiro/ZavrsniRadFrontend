@@ -16,6 +16,7 @@ export class HomeComponent {
   messages: boolean = true;
   selectedRecipient?: User | MessageGroup;
   selectedEvent?: Event;
+  filterDate?: string;
 
   constructor(
     private webSocketService: WebsocketService,

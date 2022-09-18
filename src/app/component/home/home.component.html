@@ -22,6 +22,9 @@
     <div *ngIf="messages" class="overflow-scroll">
       <app-user-group-single-select (newItemEvent)="selectedRecipient=$event"></app-user-group-single-select>
     </div>
+    <div *ngIf="!messages" class="overflow-scroll">
+      <app-event-filter (filterEvent)="filterDate=$event"></app-event-filter>
+    </div>
 
     <!--Sidebar bottom-->
     <div style="border-top: 1px solid #030663" class="nav nav-pills nav-flush flex-column mt-auto align-items-center mb-2 pt-2 navbar-buttons">
@@ -37,8 +40,8 @@
         </button>
       </div>
 
-      <div>
-        <button (click)="logout()" class="btn btn-primary"><i class="bi bi-gear-fill"></i></button>
+      <div class="logoutdiv">
+        <button (click)="logout()" class="btn btn-primary"><i class="bi bi-door-closed-fill"></i></button>
       </div>
     </div>
   </div>
@@ -54,7 +57,7 @@
   <div *ngIf="!messages" class="main-content-area card">
     <h1 class="ms-4">Events</h1>
     <div class="card-body h-75">
-      <app-event></app-event>
+      <app-event [filterDate]="filterDate"></app-event>
     </div>
   </div>
 

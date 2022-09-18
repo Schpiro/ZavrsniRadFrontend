@@ -58,3 +58,7 @@ main {
   overflow-y: auto;
 }
 
+.logoutdiv:hover .bi-door-closed-fill:before {
+  content: "\f307";
+}
+
