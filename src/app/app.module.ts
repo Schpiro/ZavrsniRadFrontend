@@ -33,6 +33,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
+import { EventFilterComponent } from './component/event/event-filter/event-filter.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { MatInputModule } from '@angular/material/input';
     RegisterComponent,
     UserGroupCreateDialog,
     CreateEventDialog,
-    AudioVideoCallDialog
+    AudioVideoCallDialog,
+    EventFilterComponent
   ],
   imports: [
     BrowserModule,
