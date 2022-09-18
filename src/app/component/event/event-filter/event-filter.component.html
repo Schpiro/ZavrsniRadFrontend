@@ -1,10 +1,10 @@
 <div class="nav nav-pills nav-flush flex-column mt-auto align-items-center mb-2 pt-2 navbar-buttons">
-  <mat-form-field style="width:0px;height: 0px; visibility:hidden;">
+  <mat-form-field style="width:0;height: 0; visibility:hidden;">
     <input matInput [matDatepicker]="picker" [ngModel]="date" (ngModelChange)="changeDate($event)">
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
-  <button class="btn btn-primary">
-    <i class="bi bi-filter" (click)="picker.open()">
+  <button class="btn btn-primary" (click)="picker.open()">
+    <i class="bi bi-filter">
     </i>
   </button>
 </div>
