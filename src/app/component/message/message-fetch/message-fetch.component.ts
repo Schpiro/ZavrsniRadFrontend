@@ -114,6 +114,11 @@ export class MessageFetchComponent implements OnInit, OnChanges {
 
   formatDate(isoDateString: string): string{
     let isoDate = new Date(isoDateString);
-    return isoDate.getFullYear() + '-' + isoDate.getMonth() + '-' + isoDate.getDay() + ' ' + isoDate.getHours() + ':' + isoDate.getMinutes() + ':' + isoDate.getSeconds();
+    return isoDate.getFullYear().toString() + `-`
+      + ('0' + (isoDate.getMonth()+1).toString()).slice(-2) + `-`
+      + ('0' + isoDate.getDate().toString()).slice(-2) + ` `
+      + ('0' + isoDate.getHours()).slice(-2) + `:`
+      + ('0' + isoDate.getMinutes()).slice(-2) + `:`
+      + ('0' + isoDate.getSeconds()).slice(-2);
   }
 }

@@ -26,12 +26,12 @@ export class EventCreateComponent implements OnInit {
     )
   }
 
-  createEvent(title: string, time: string, location: string, details: string){
+  createEvent(title: string, time: Date, location: string, details: string){
     let event: Event = {
       id:0,
       creator:this.authService.getAuthenticatedUserUsername(),
       creatorId:this.authService.getAuthenticatedUserID(),
-      date:Date.now().toString(),
+      date:new Date(time).getTime().toString(),
       title:title,
       location: location,
       details:details,
@@ -50,6 +50,10 @@ export class EventCreateComponent implements OnInit {
 })
 export class CreateEventDialog {
   @Input() users: User[] = [];
+  time?: Date;
+  title?: string;
+  details?: string;
+  location?: string;
 
   constructor(public dialogRef: MatDialogRef<CreateEventDialog>) {}
 
@@ -65,9 +69,10 @@ export class CreateEventDialog {
     });
   }
 
-  createButtonAction(title: string, time: string, location: string, details: string) {
-    if (title != undefined) {
-      this.dialogRef.close({action: "CREATE", invitedUsers: this.users, title: title, time:time,location:location,details:details});
+  createButtonAction() {
+    console.log(this.title,this.time,this.location,this.details)
+    if (this.title != undefined) {
+      this.dialogRef.close({action: "CREATE", invitedUsers: this.users, title: this.title, time:this.time,location:this.location,details:this.details});
     } else {
       this.doCancel()
     }

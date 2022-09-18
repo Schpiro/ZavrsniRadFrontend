@@ -4,7 +4,7 @@
     <div class="event-create-input w-100">
       <label class="w-100">Name:
         <div class="w-100">
-          <input class="w-100" #Name/>
+          <input class="w-100" #Name [(ngModel)]="title"/>
         </div>
       </label>
     </div>
@@ -12,7 +12,7 @@
       <label>Time:
         <div>
           <mat-form-field>
-            <input matInput type="datetime-local" #Time>
+            <input matInput type="datetime-local" [(ngModel)]="time">
           </mat-form-field>
         </div>
       </label>
@@ -20,18 +20,18 @@
     <div class="event-create-input w-100">
       <label class="w-100">Location:
         <div class="w-100">
-          <input class="w-100" #Location/>
+          <input class="w-100" #Location [(ngModel)]="location"/>
         </div>
       </label>
     </div>
     <div class="event-create-input w-100">
       <label class="w-100">Details:
         <div class="w-100">
-          <textarea class="w-100" #Details></textarea>
+          <textarea class="w-100" #Details [(ngModel)]="details"></textarea>
         </div>
       </label>
     </div>
-    <button class="btn btn-primary" style="width: 100%" (click)="createButtonAction(Name.value, Time.value, Location.value, Details.value)">
+    <button class="btn btn-primary" style="width: 100%" (click)="createButtonAction()">
       Create event
     </button>
   </div>
