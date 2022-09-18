@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {catchError, Observable, of, tap} from "rxjs";
 import { Event } from '../model/event.model';
 import {Comment} from "../model/comment.model";
@@ -50,16 +50,6 @@ export class EventService extends BackendBaseService{
         tap((newComment: Comment) => console.log(`Sucesfully created comment: ${newComment}`)),
         catchError(this.handleError<Comment>('createComment'))
       )
-  }
-
-  getEventsByUsername(Username: string): Observable<Event[]> {
-    const params = new HttpParams().set('Username', Username);
-
-    return this.http.get<Event[]>(this.eventsUrl, {params})
-      .pipe(
-        tap(_ => console.log('fetched Events Username=${Username}')),
-        catchError(this.handleError<Event[]>('getEventsByUsername Username=${Username}', []))
-      );
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

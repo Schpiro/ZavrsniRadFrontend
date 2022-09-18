@@ -54,10 +54,6 @@ main {
   background-color: #d2f4ea;
 }
 
-.scrollarea {
-  overflow-y: auto;
-}
-
 .logoutdiv:hover .bi-door-closed-fill:before {
   content: "\f307";
 }

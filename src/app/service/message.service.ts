@@ -17,14 +17,6 @@ export class MessageService extends BackendBaseService{
     super();
   }
 
-  getMessages(): Observable<Message[]> {
-    return this.http.get<Message[]>(this.messagesUrl)
-      .pipe(
-        tap(_ => console.log('fetched Messages',_)),
-        catchError(this.handleError<Message[]>('getMessages', []))
-      );
-  }
-
   getConversation(code: number | undefined): Observable<Message[]> {
     const url = `${this.messagesUrl}/${code}`;
     return this.http.get<Message[]>(url)
