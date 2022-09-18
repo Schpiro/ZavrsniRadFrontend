@@ -3,18 +3,20 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {catchError, Observable, of, tap} from "rxjs";
 import {User} from "../model/user.model";
 import {MessageGroup} from "../model/message-groups.model";
+import {BackendBaseService} from "./backend-base.service";
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
-  private userUrl = 'https://localhost:8081/users';
+export class UserService extends BackendBaseService{
 
   httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
   };
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    super();
+  }
 
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.userUrl)

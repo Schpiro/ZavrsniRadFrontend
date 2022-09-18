@@ -2,19 +2,20 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {catchError, Observable, of, tap} from "rxjs";
 import { Message } from '../model/message.model';
+import {BackendBaseService} from "./backend-base.service";
 
 @Injectable({
   providedIn: 'root'
 })
-export class MessageService {
-
-  private messagesUrl = 'https://localhost:8081/message';
+export class MessageService extends BackendBaseService{
 
   httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
   };
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    super();
+  }
 
   getMessages(): Observable<Message[]> {
     return this.http.get<Message[]>(this.messagesUrl)

@@ -1,13 +1,13 @@
 import {EventEmitter, Injectable} from '@angular/core';
 import {AuthenticationService} from "./authentication.service";
 import {WebSocketMessage} from "../model/web-socket-message.model";
+import {BackendBaseService} from "./backend-base.service";
 
-const url = "wss://localhost:8081/socket/test";
 
 @Injectable({
   providedIn: 'root'
 })
-export class WebsocketService {
+export class WebsocketService extends BackendBaseService{
   public webSocketMessage = new EventEmitter<WebSocketMessage>();
   public messages: MessageEvent[] = [];
   private socket: WebSocket;
@@ -15,6 +15,7 @@ export class WebsocketService {
   constructor(
     public authenticationService: AuthenticationService,
   ) {
+    super();
     this.socket = this.createWsConnection();
     this.socket.onclose = () => {
       console.log("reconnecting")
@@ -31,7 +32,7 @@ export class WebsocketService {
   }
 
   private createWsConnection(): WebSocket{
-    let socket = new WebSocket(url);
+    let socket = new WebSocket(this.websocketURL);
     socket.onopen = () => this.sendMessage({type:"CLIENT_ID", payload:this.authenticationService.getAuthenticatedUserID(),recipientIds:undefined,senderId: undefined,senderName: undefined});
     socket.onmessage = (ev: MessageEvent) => {
       this.webSocketMessage.emit(JSON.parse(ev.data));

@@ -3,16 +3,17 @@ import {Injectable} from '@angular/core';
 import jwt_decode from "jwt-decode";
 import {Login} from "../model/login.model";
 import {Jwt} from "../model/jwt.model";
+import {BackendBaseService} from "./backend-base.service";
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthenticationService {
+export class AuthenticationService extends BackendBaseService{
 
-  rootUrl = 'https://localhost:8081/authentication';
   static getAuthenticatedUserID: any;
 
   constructor(private http: HttpClient) {
+    super();
   }
 
   login(login: Login) {

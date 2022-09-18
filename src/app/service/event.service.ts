@@ -3,19 +3,20 @@ import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {catchError, Observable, of, tap} from "rxjs";
 import { Event } from '../model/event.model';
 import {Comment} from "../model/comment.model";
+import {BackendBaseService} from "./backend-base.service";
 
 @Injectable({
   providedIn: 'root'
 })
-export class EventService {
-
-  private eventsUrl = 'https://localhost:8081/event';
+export class EventService extends BackendBaseService{
 
   httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
   };
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    super();
+  }
 
   getEvents(): Observable<Event[]> {
     return this.http.get<Event[]>(this.eventsUrl)
