@@ -1,6 +1,6 @@
 export class BackendBaseService {
 
-  private ipAddress: string = '192.168.76.74';
+  private ipAddress: string = 'localhost';
   private port: string = '8081'
   private baseURL: string = `https://${this.ipAddress}:${this.port}`;
   eventsUrl = `${this.baseURL}/event`;
