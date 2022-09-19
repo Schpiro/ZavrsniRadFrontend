@@ -25,7 +25,7 @@ export class CommentCreateComponent implements OnInit {
       eventId: this.event.id!,
       creator: this.authService.getAuthenticatedUserUsername(),
       creatorId: this.authService.getAuthenticatedUserID(),
-      commentBody: JSON.stringify(commentBody),
+      commentBody: JSON.stringify(commentBody).slice(1,-1),
       creationDate: Date.now().toString(),
       parentCommentId: undefined
     }

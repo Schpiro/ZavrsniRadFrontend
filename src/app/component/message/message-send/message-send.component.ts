@@ -28,7 +28,7 @@ export class MessageSendComponent implements OnInit {
       creator: this.authenticationService.getAuthenticatedUserUsername(),
       recipientId: group?undefined:recipientId,
       recipientGroupId: group?recipientId:undefined,
-      messageBody: JSON.stringify(messageBody),
+      messageBody: JSON.stringify(messageBody).slice(1,-1),
       creatorId: this.authenticationService.getAuthenticatedUserID(),
       groupParticipantsIds: undefined,
       parentMessage: undefined,
